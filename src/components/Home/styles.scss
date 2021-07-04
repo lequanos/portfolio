@@ -1,0 +1,53 @@
+.home__picture {
+  height: 100%;
+  width: 30%;
+  max-width: 30%;
+  background: url(../../../public/IMG_20180501_112141.jpg);
+  background-size: cover;
+  background-position: center;
+  background-color: #E4E0D9;
+  opacity: 0.8;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.home__text {
+  height: fit-content;
+  padding: 8rem 5rem 4rem;
+  max-width: 70%;
+  color: #3E3F3F;
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #E4E0D9;
+  width: 100%;
+
+  .text__small {
+    font-size: clamp(20px, 2vw, 43px);
+    margin-top: 0.5rem;
+    font-weight: 100;
+  } 
+
+  .text__large {
+    font-size: clamp(40px, 4vw, 85px);
+    font-weight: 400;
+    margin: 1rem 0;
+  }
+
+  .text__medium {
+    font-size: clamp(30px, 3vw, 64px);
+    margin: 0.5rem 0 1rem;
+    font-weight: 200;
+  }
+
+  .text__icon {
+    margin-right: 2rem;
+    height: fit-content;
+    cursor: pointer;
+
+    &:hover {
+      color: #5F758E;
+    }
+  }
+}
