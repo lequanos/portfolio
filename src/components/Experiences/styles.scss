@@ -13,7 +13,7 @@
 
 .experiences__text {
   height: fit-content;
-  padding: 8rem 5rem 4rem;
+  padding: 0 5rem 4rem;
   max-width: 70%;
   color: #F7F5F4;
   min-height: 100vh;
@@ -21,7 +21,7 @@
   flex-direction: column;
   justify-content: space-between;
   line-height: 2.5em;
-  margin-left: 30%;
+  margin-left: calc(30% + 0.3rem);
   background-color: #3B4B6D;
   width: 100%;
 
@@ -34,7 +34,11 @@
   .text__large {
     font-size: clamp(30px, 3vw, 64px);
     font-weight: 400;
-    margin: 1rem 0;
+    position: fixed;
+    height: 40%;
+    background-color: #3B4B6D;
+    z-index: 10;
+    padding-top: 9rem;
   }
 
   .text__medium {
@@ -54,6 +58,17 @@
   }
 
   .timeline {
-    height: 1200px;
+    margin-top: 40%;
+    height: 200vh;
+    display: flex;
+    justify-content: space-between;
+
+    .card {
+      width: 30%;
+      height: 30vh;
+      position: fixed;
+      right: 4rem;
+    }
   }
 }
+

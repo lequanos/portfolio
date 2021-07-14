@@ -1,0 +1,18 @@
+.initialScreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+
+  .box {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    max-width: 100%;
+    background-color: #3E3F3F;
+  }
+}

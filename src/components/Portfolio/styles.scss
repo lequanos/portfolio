@@ -1,8 +1,13 @@
-
 .home {
   width: 100vw;
   height: 100vh;
   max-width: 100vw;
-  overflow-x: hidden;
-  display: flex;
+  overflow: hidden;
+  position: absolute;
+  background-color: #E4E0D9;
+  z-index: -14;
+}
+
+.about {
+  background-color: #3B4B6D;
 }

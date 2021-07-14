@@ -1,67 +1,98 @@
 // == Import npm
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 // Import Material UI
-import { Slider } from '@material-ui/core';
+import { Slider, Card } from '@material-ui/core';
 
 // == Import
 import './styles.scss';
 
 // == Composant
 const Experiences = ({ homeElement }) => {
-  const timelineRef = useRef(null);
+  const contentRef = useRef(null);
+  const sliderRef = useRef(null);
+  const [value, setValue] = useState(246);
+  const [scrollTop, setScrollTop] = useState(0);
 
   const marks = [
     {
-      value: 16,
-      label: '2016',
+      value: 31,
+      label: 'Juillet 2003',
     },
     {
-      value: 20,
-      label: 'Septembre 2020',
+      value: 67,
+      label: 'Juillet 2006',
     },
     {
-      value: 252,
-      label: 'mai 2021',
+      value: 246,
+      label: 'Juin 2021',
     },
   ];
 
-  const valuetext = (value) => (
-    `${value}°C`
+  const valuetext = (v) => (
+    `${v}°C`
   );
 
-  const handleScroll = () => {
-    const lastScrollTop = timelineRef.current.getBoundingClientRect().top;
-    console.log(lastScrollTop);
+  // eslint-disable-next-line consistent-return
+  const handleScroll = (e) => {
+    e.preventDefault();
+    const { current: contentEl } = contentRef;
+    if (e.deltaY === 100) {
+      marks.forEach((mark, index) => {
+        if (value === mark.value) {
+          const nextMarkIndex = index - 1 >= 0 ? index - 1 : index;
+          const nextMark = document.querySelector(`[data-index='${nextMarkIndex}']`);
+          nextMark.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+          setValue(marks[nextMarkIndex].value);
+        }
+      });
+    }
+    else if (e.deltaY === -100) {
+      marks.forEach((mark, index) => {
+        if (value === mark.value) {
+          const nextMarkIndex = index + 1 <= (marks.length - 1) ? index + 1 : (marks.length - 1);
+          const nextMark = document.querySelector(`[data-index='${nextMarkIndex}']`);
+          nextMark.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+          setValue(marks[nextMarkIndex].value);
+        }
+      });
+    }
+    setScrollTop(contentEl.getBoundingClientRect().top);
   };
 
   useEffect(() => {
-    homeElement?.addEventListener('scroll', handleScroll);
+    homeElement?.addEventListener('wheel', handleScroll);
 
     return () => {
-      homeElement?.removeEventListener('scroll', handleScroll);
+      homeElement?.removeEventListener('wheel', handleScroll);
     };
-  }, [homeElement, timelineRef]);
+  }, [homeElement, scrollTop, value]);
 
   return (
     <>
       <aside className="experiences__picture" />
-      <div className="experiences__text">
+      <div className="experiences__text" ref={contentRef}>
         <div>
           <h2 className="text__large">
             Expériences
           </h2>
-          <div className="timeline" ref={timelineRef}>
+          <div className="timeline">
             <Slider
-              min={0}
+              min={24}
               max={252}
               orientation="vertical"
-              defaultValue={252}
+              value={value}
               aria-labelledby="vertical-slider"
               getAriaValueText={valuetext}
+              track={false}
+              step={null}
               marks={marks}
+              ref={sliderRef}
             />
+            <Card className="card">
+              Test
+            </Card>
           </div>
         </div>
       </div>
