@@ -1,18 +1,21 @@
 // == Import npm
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
+import { motion, useAnimation } from 'framer-motion';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 
 // == Import
 // import InitialTransition from 'src/components/InitialTransition';
+import { content, background } from 'src/lib/framerVariants';
 import './styles.scss';
 
 // == Composant
-const Home = () => {
+const Home = ({ controls, setControls }) => {
+  const homeControls = useAnimation();
   const [techno, setTechno] = useState('React');
 
   useEffect(() => {
-    setTimeout(() => {
+    const id = setTimeout(() => {
       switch (techno) {
         case 'React':
           setTechno('NextJS');
@@ -24,47 +27,25 @@ const Home = () => {
           setTechno('React');
       }
     }, 3000);
+
+    return () => {
+      clearTimeout(id);
+    };
   }, [techno]);
 
+  useEffect(() => {
+    setControls(homeControls);
+    if (Object.keys(controls).length > 0) {
+      controls.start({
+        zIndex: -10,
+        transition: {
+          delay: 0.3,
+        },
+      });
+    }
+  }, [controls]);
+
   const cn = `texte__large text__large--${techno}`;
-
-  const textContainer = {
-    initial: {
-      opacity: 0,
-    },
-    animate: {
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        delay: 1,
-        ease: 'easeInOut',
-      },
-    },
-    exit: {
-      opacity: 0,
-    },
-  };
-
-  const backgroundContainer = {
-    initial: {
-      rotate: -45,
-    },
-    animate: {
-      zIndex: -10,
-      transition: {
-        delay: 0.3,
-      },
-    },
-    exit: {
-      x: -2000,
-      y: -2000,
-      transition: {
-        type: 'spring',
-        duration: 1,
-        ease: 'easeIn',
-      },
-    },
-  };
 
   return (
     <motion.section>
@@ -72,15 +53,14 @@ const Home = () => {
       <motion.div
         className="home__background"
         initial={['initial']}
-        animate={['animate']}
-        exit={['exit']}
-        variants={backgroundContainer}
+        animate={controls}
+        variants={background}
       />
       <motion.div
         initial="initial"
         exit="exit"
         animate="animate"
-        variants={textContainer}
+        variants={content}
         className="home__text"
       >
         <div>
@@ -120,6 +100,16 @@ const Home = () => {
       </motion.div>
     </motion.section>
   );
+};
+
+Home.propTypes = {
+  controls: PropTypes.object,
+  setControls: PropTypes.func,
+};
+
+Home.defaultProps = {
+  controls: {},
+  setControls: () => {},
 };
 
 // == Export

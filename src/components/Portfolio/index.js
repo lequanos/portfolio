@@ -16,26 +16,33 @@ const Portfolio = () => {
   const homeElement = useRef(null);
   const [homeEl, setHomeEl] = useState(null);
   const [homeBgColor, setHomeBgColor] = useState('');
-  let cn = 'home';
+  const [pageIndex, setPageIndex] = useState(0);
+  const [controls, setControls] = useState();
+  const [cn, setCn] = useState('home');
 
   useEffect(() => {
     setHomeEl(homeElement.current);
   }, [homeElement]);
 
   useEffect(() => {
-    cn = `home ${homeBgColor}`;
+    setCn(`home ${homeBgColor}`);
   }, [homeBgColor]);
 
   return (
     <div className={cn} ref={homeElement}>
-      <Menu setHomeBgColor={setHomeBgColor} />
+      <Menu
+        setHomeBgColor={setHomeBgColor}
+        setPageIndex={setPageIndex}
+        pageIndex={pageIndex}
+        controls={controls}
+      />
       <AnimatePresence>
         <Switch location={location} key={location.pathname}>
           <Route exact path="/">
-            <Home />
+            <Home controls={controls} setControls={setControls} />
           </Route>
           <Route exact path="/a-propos">
-            <About />
+            <About controls={controls} setControls={setControls} />
           </Route>
           <Route exact path="/experiences">
             <Experiences homeElement={homeEl} />

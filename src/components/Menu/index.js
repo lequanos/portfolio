@@ -1,5 +1,5 @@
 // == Import npm
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
@@ -7,15 +7,37 @@ import { NavLink } from 'react-router-dom';
 import './styles.scss';
 
 // == Composant
-const Menu = ({ setHomeBgColor }) => {
-  const [cn, setCn] = useState('');
-
-  const handleClick = (page) => {
+const Menu = ({
+  setHomeBgColor,
+  setPageIndex,
+  pageIndex,
+  controls,
+}) => {
+  const handleClick = (e, page, nextPageIndex) => {
     setHomeBgColor(page);
-    setCn('disabled');
-    setTimeout(() => {
-      setCn('');
-    }, 500);
+    if (nextPageIndex > pageIndex) {
+      controls.start({
+        x: -2000,
+        y: -2000,
+        transition: {
+          type: 'spring',
+          duration: 1,
+          ease: 'easeIn',
+        },
+      });
+    }
+    else {
+      controls.start({
+        x: 2000,
+        y: 2000,
+        transition: {
+          type: 'spring',
+          duration: 1,
+          ease: 'easeIn',
+        },
+      });
+    }
+    setPageIndex(nextPageIndex);
   };
 
   return (
@@ -23,29 +45,26 @@ const Menu = ({ setHomeBgColor }) => {
       <ul className="navbar">
         <li className="navbar__item">
           <NavLink
-            className={cn}
             exact
             to="/"
             activeClassName="active"
-            onClick={() => handleClick('')}
+            onClick={(e) => handleClick(e, '', 0)}
           >
             Accueil
           </NavLink>
         </li>
         <li className="navbar__item">
           <NavLink
-            className={cn}
             exact
             to="/a-propos"
             activeClassName="active"
-            onClick={() => handleClick('about')}
+            onClick={(e) => handleClick(e, 'about', 1)}
           >
             A propos
           </NavLink>
         </li>
         <li className="navbar__item">
           <NavLink
-            className={cn}
             exact
             to="/experiences"
             activeClassName="active"
@@ -55,7 +74,6 @@ const Menu = ({ setHomeBgColor }) => {
         </li>
         <li className="navbar__item">
           <NavLink
-            className={cn}
             exact
             to="/competences"
             activeClassName="active"
@@ -65,7 +83,6 @@ const Menu = ({ setHomeBgColor }) => {
         </li>
         <li className="navbar__item">
           <NavLink
-            className={cn}
             exact
             to="/mes-projets"
             activeClassName="active"
@@ -75,7 +92,6 @@ const Menu = ({ setHomeBgColor }) => {
         </li>
         <li className="navbar__item">
           <NavLink
-            className={cn}
             exact
             to="/me-contacter"
             activeClassName="active"
@@ -90,10 +106,18 @@ const Menu = ({ setHomeBgColor }) => {
 
 Menu.propTypes = {
   setHomeBgColor: PropTypes.func,
+  setPageIndex: PropTypes.func,
+  controls: PropTypes.shape({
+    start: PropTypes.func,
+  }),
+  pageIndex: PropTypes.number,
 };
 
 Menu.defaultProps = {
   setHomeBgColor: () => {},
+  setPageIndex: () => {},
+  controls: {},
+  pageIndex: 0,
 };
 
 // == Export

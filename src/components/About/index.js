@@ -1,65 +1,48 @@
 // == Import npm
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { motion, useAnimation } from 'framer-motion';
 
 // == Import
+import { content, background } from 'src/lib/framerVariants';
 import './styles.scss';
 
 // == Composant
-const About = () => {
-  const textContainer = {
-    initial: {
-      opacity: 0,
-    },
-    animate: {
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        delay: 1,
-        ease: 'easeInOut',
-      },
-    },
-    exit: {
-      opacity: 0,
-    },
-  };
+const About = ({ controls, setControls }) => {
+  const aboutControls = useAnimation();
 
-  const backgroundContainer = {
-    initial: {
-      rotate: -45,
-    },
-    animate: {
-      zIndex: -10,
-      transition: {
-        delay: 0.3,
-      },
-    },
-    exit: {
-      x: -2000,
-      y: -2000,
-      transition: {
-        type: 'spring',
-        duration: 1,
-        ease: 'easeIn',
-      },
-    },
-  };
+  useEffect(() => {
+    setControls(aboutControls);
+    if (Object.keys(controls).length > 0) {
+      controls.start({
+        zIndex: -10,
+        transition: {
+          delay: 0.3,
+        },
+      });
+    }
+  }, [controls]);
 
   return (
-    <div>
+    <motion.section className="aboutContainer">
       <motion.div
         className="about__background"
         initial={['initial']}
-        animate={['animate']}
-        exit={['exit']}
-        variants={backgroundContainer}
+        animate={controls}
+        variants={background}
       />
-      {/* <aside className="about__picture" /> */}
+      <motion.aside
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={content}
+        className="about__picture"
+      />
       <motion.div
         initial="initial"
         animate="animate"
         exit="exit"
-        variants={textContainer}
+        variants={content}
         className="about__text"
       >
         <div>
@@ -85,8 +68,18 @@ const About = () => {
           </p>
         </div>
       </motion.div>
-    </div>
+    </motion.section>
   );
+};
+
+About.propTypes = {
+  controls: PropTypes.object,
+  setControls: PropTypes.func,
+};
+
+About.defaultProps = {
+  controls: {},
+  setControls: () => {},
 };
 
 // == Export
