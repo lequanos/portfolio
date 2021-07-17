@@ -6,7 +6,7 @@ import { SiGithub, SiLinkedin } from 'react-icons/si';
 
 // == Import
 // import InitialTransition from 'src/components/InitialTransition';
-import { content, background } from 'src/lib/framerVariants';
+import { text, background } from 'src/lib/framerVariants';
 import './styles.scss';
 
 // == Composant
@@ -60,7 +60,7 @@ const Home = ({ controls, setControls }) => {
         initial="initial"
         exit="exit"
         animate="animate"
-        variants={content}
+        variants={text}
         className="home__text"
       >
         <div>

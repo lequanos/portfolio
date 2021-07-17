@@ -39,10 +39,20 @@ const Portfolio = () => {
       <AnimatePresence>
         <Switch location={location} key={location.pathname}>
           <Route exact path="/">
-            <Home controls={controls} setControls={setControls} />
+            <Home
+              controls={controls}
+              setControls={setControls}
+              pageIndex={pageIndex}
+              setPageIndex={setPageIndex}
+            />
           </Route>
           <Route exact path="/a-propos">
-            <About controls={controls} setControls={setControls} />
+            <About
+              controls={controls}
+              setControls={setControls}
+              pageIndex={pageIndex}
+              setPageIndex={setPageIndex}
+            />
           </Route>
           <Route exact path="/experiences">
             <Experiences homeElement={homeEl} />

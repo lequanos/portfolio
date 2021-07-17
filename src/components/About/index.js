@@ -4,11 +4,16 @@ import PropTypes from 'prop-types';
 import { motion, useAnimation } from 'framer-motion';
 
 // == Import
-import { content, background } from 'src/lib/framerVariants';
+import { text, picture, background } from 'src/lib/framerVariants';
 import './styles.scss';
 
 // == Composant
-const About = ({ controls, setControls }) => {
+const About = ({
+  controls,
+  setControls,
+  pageIndex,
+  setPageIndex,
+}) => {
   const aboutControls = useAnimation();
 
   useEffect(() => {
@@ -23,6 +28,12 @@ const About = ({ controls, setControls }) => {
     }
   }, [controls]);
 
+  useEffect(() => {
+    if (pageIndex !== 1) {
+      setPageIndex(1);
+    }
+  }, []);
+
   return (
     <motion.section className="aboutContainer">
       <motion.div
@@ -35,36 +46,35 @@ const About = ({ controls, setControls }) => {
         initial="initial"
         animate="animate"
         exit="exit"
-        variants={content}
+        variants={picture}
         className="about__picture"
       />
       <motion.div
         initial="initial"
         animate="animate"
         exit="exit"
-        variants={content}
+        variants={text}
         className="about__text"
       >
         <div>
-          <h2 className="text__large">
+          <h2 className="text__medium">
             A propos
           </h2>
           <p className="text__small">
-            Après avoir travaillé pendant près de 15 ans dans le domaine de la restauration,
-            dont les 8 dernières en tant que directeur de restaurant,
-            j'ai profité comme tant d'autres personnes du confinement pour changer d'air
-            et me lancer dans le développement web, et je ne regrette pas du tout !
+            Fier papa d'un petit garçon, j'ai officié pendant près de 15 ans dans le domaine
+            de la restauration, dont les 8 dernières en tant que directeur de restaurant.
             <br />
             <br />
-            Ainsi, j'ai commencé la formation fullstack JS avec <a href="https://oclock.io" target="_blank" rel="noreferrer">l'école O'Clock </a>
-            qui a débuté en novembre 2020, et s'est terminée en mai 2021.
-            Cela m'a permis d'acquérir de solides compétences en Javascript,
-            avec notamment ReactJS en Front-End et
-            NodeJs en Back-End avec le framework Express.
+            Suite à la crise de la Covid, j'ai suivi une formation avec <a href="https://oclock.io" target="_blank" rel="noreferrer">l'école O'Clock </a>
+            afin d'opérer une reconversion professionnelle dans un domaine qui
+            m'a toujours tenu à coeur, le développement web.
+            <br />
+            Cette formation m'a permis d'acquérir de solides compétences en Javascript, avec
+            notamment ReactJS en Front-End et NodeJS en Back-End avec le framework Express.
             <br />
             <br />
-            Au-delà de tout ça, je suis également le très heureux papa d'un petit garçon,
-            qui me rend fier tous les jours !
+            Au-delà de tout ça, je suis également un passioné de café sous toute ses formes,
+            de boulangerie et toujours aussi de cuisine !
           </p>
         </div>
       </motion.div>
@@ -75,11 +85,15 @@ const About = ({ controls, setControls }) => {
 About.propTypes = {
   controls: PropTypes.object,
   setControls: PropTypes.func,
+  pageIndex: PropTypes.number,
+  setPageIndex: PropTypes.func,
 };
 
 About.defaultProps = {
   controls: {},
   setControls: () => {},
+  pageIndex: 1,
+  setPageIndex: () => {},
 };
 
 // == Export

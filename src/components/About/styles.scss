@@ -1,39 +1,38 @@
 .aboutContainer {
   background-color: transparent;
 
-
   .about__background {
     background-color: #3B4B6D;
     height: 300vh;
     width: 300vw;
     position: absolute;
-    top: -80vh;
+    top: -120vh;
     left: -120vw;
     z-index: -11;
     overflow: hidden;
   }
   
   .about__picture {
-    height: 70%;
-    width: 20%;
-    max-width: 20%;
+    height: 37%;
+    width: 25%;
+    border-radius: 50%;
     background: url(../../../public/IMG_20180501_112141.jpg);
     background-size: cover;
     background-position: center;
-    opacity: 0.8;
     position: fixed;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    left: 50px;
+    top: 150px;
   }
   
   .about__text {
     height: fit-content;
     padding: 8rem 5rem;
     max-width: 80%;
-    color: #F7F5F4;
+    color: #e4e0d9;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     line-height: 2.5em;
     margin-left: 20%;
     background-color: transparent;
@@ -52,7 +51,7 @@
     }
   
     .text__medium {
-      font-size: clamp(20px, 2vw, 43px);
+      font-size: clamp(40px, 4vw, 64px);
       margin: 2rem 0 1rem;
       font-weight: 200;
     }

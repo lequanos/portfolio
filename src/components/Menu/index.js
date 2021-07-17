@@ -1,5 +1,5 @@
 // == Import npm
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
@@ -13,6 +13,8 @@ const Menu = ({
   pageIndex,
   controls,
 }) => {
+  const [menuItemClass, setMenuItemClass] = useState('navbar__item');
+
   const handleClick = (e, page, nextPageIndex) => {
     setHomeBgColor(page);
     if (nextPageIndex > pageIndex) {
@@ -40,10 +42,23 @@ const Menu = ({
     setPageIndex(nextPageIndex);
   };
 
+  useEffect(() => {
+    switch (pageIndex) {
+      case 0:
+        setMenuItemClass('navbar__item');
+        break;
+      case 1:
+        setMenuItemClass('navbar__item navbar__item--about');
+        break;
+      default:
+        setMenuItemClass('navbar__item');
+    }
+  }, [pageIndex]);
+
   return (
     <nav className="menu">
       <ul className="navbar">
-        <li className="navbar__item">
+        <li className={menuItemClass}>
           <NavLink
             exact
             to="/"
@@ -53,7 +68,7 @@ const Menu = ({
             Accueil
           </NavLink>
         </li>
-        <li className="navbar__item">
+        <li className={menuItemClass}>
           <NavLink
             exact
             to="/a-propos"
@@ -63,7 +78,7 @@ const Menu = ({
             A propos
           </NavLink>
         </li>
-        <li className="navbar__item">
+        <li className={menuItemClass}>
           <NavLink
             exact
             to="/experiences"
@@ -72,7 +87,7 @@ const Menu = ({
             Expériences
           </NavLink>
         </li>
-        <li className="navbar__item">
+        <li className={menuItemClass}>
           <NavLink
             exact
             to="/competences"
@@ -81,7 +96,7 @@ const Menu = ({
             Mes compétences
           </NavLink>
         </li>
-        <li className="navbar__item">
+        <li className={menuItemClass}>
           <NavLink
             exact
             to="/mes-projets"
@@ -90,7 +105,7 @@ const Menu = ({
             Mes projets
           </NavLink>
         </li>
-        <li className="navbar__item">
+        <li className={menuItemClass}>
           <NavLink
             exact
             to="/me-contacter"
