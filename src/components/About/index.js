@@ -58,7 +58,7 @@ const About = ({
       >
         <div>
           <h2 className="text__medium">
-            A propos
+            À propos de moi
           </h2>
           <p className="text__small">
             Fier papa d'un petit garçon, j'ai officié pendant près de 15 ans dans le domaine
@@ -69,11 +69,14 @@ const About = ({
             afin d'opérer une reconversion professionnelle dans un domaine qui
             m'a toujours tenu à coeur, le développement web.
             <br />
-            Cette formation m'a permis d'acquérir de solides compétences en Javascript, avec
-            notamment ReactJS en Front-End et NodeJS en Back-End avec le framework Express.
+            <br />
+            Cette formation m'a notamment permis d'acquérir de solides compétences en Javascript,
+            avec entre autres ReactJS en Front-End et NodeJS en Back-End avec le framework Express.
+            Mais elle m'a surtout permis d'avoir les clés pour apprendre en
+            autonomie de nouveaux outils.
             <br />
             <br />
-            Au-delà de tout ça, je suis également un passioné de café sous toute ses formes,
+            Au-delà de tout ça, je suis également un passionné de café sous toute ses formes,
             de boulangerie et toujours aussi de cuisine !
           </p>
         </div>

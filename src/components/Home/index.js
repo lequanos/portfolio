@@ -10,9 +10,15 @@ import { text, background } from 'src/lib/framerVariants';
 import './styles.scss';
 
 // == Composant
-const Home = ({ controls, setControls }) => {
+const Home = ({
+  controls,
+  setControls,
+  pageIndex,
+  setPageIndex,
+}) => {
   const homeControls = useAnimation();
   const [techno, setTechno] = useState('React');
+  const cn = `texte__large text__large--${techno}`;
 
   useEffect(() => {
     const id = setTimeout(() => {
@@ -45,7 +51,11 @@ const Home = ({ controls, setControls }) => {
     }
   }, [controls]);
 
-  const cn = `texte__large text__large--${techno}`;
+  useEffect(() => {
+    if (pageIndex !== 0) {
+      setPageIndex(0);
+    }
+  }, []);
 
   return (
     <motion.section>
@@ -105,11 +115,15 @@ const Home = ({ controls, setControls }) => {
 Home.propTypes = {
   controls: PropTypes.object,
   setControls: PropTypes.func,
+  pageIndex: PropTypes.number,
+  setPageIndex: PropTypes.func,
 };
 
 Home.defaultProps = {
   controls: {},
   setControls: () => {},
+  pageIndex: 1,
+  setPageIndex: () => {},
 };
 
 // == Export

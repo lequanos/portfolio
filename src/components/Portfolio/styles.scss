@@ -1,8 +1,10 @@
 .home {
   width: 100vw;
   height: 100vh;
+  max-height: 100vh;
   max-width: 100vw;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: absolute;
   background-color: #E4E0D9;
   z-index: -14;

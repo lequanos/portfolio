@@ -3,9 +3,11 @@
 
   .about__background {
     background-color: #3B4B6D;
-    height: 300vh;
-    width: 300vw;
-    position: absolute;
+    height: 320vh;
+    min-height: 1800px;
+    width: 320vw;
+    min-width: 2200px;
+    position: fixed;
     top: -120vh;
     left: -120vw;
     z-index: -11;
@@ -13,8 +15,9 @@
   }
   
   .about__picture {
-    height: 37%;
-    width: 25%;
+    width: 30%;
+    min-width: 150px;
+    max-width: 450px;
     border-radius: 50%;
     background: url(../../../public/IMG_20180501_112141.jpg);
     background-size: cover;
@@ -22,24 +25,30 @@
     position: fixed;
     left: 50px;
     top: 150px;
+
+    &::after {
+      content: '';
+      display: block;
+      padding-bottom: 100%;
+    }
   }
   
   .about__text {
-    height: fit-content;
+    height: 100vh;
     padding: 8rem 5rem;
-    max-width: 80%;
+    width: 80%;
+    max-width: 1200px;
+    min-width: 300px;
     color: #e4e0d9;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    line-height: 2.5em;
+    line-height: 1.5;
     margin-left: 20%;
     background-color: transparent;
-    width: 100%;
   
     .text__small {
-      font-size: clamp(16px, 1.3vw, 21px);
+      font-size: clamp(12px, 3.5vw, 17px);
       margin-top: 4rem;
       font-weight: 100;
     } 
@@ -51,9 +60,11 @@
     }
   
     .text__medium {
-      font-size: clamp(40px, 4vw, 64px);
       margin: 2rem 0 1rem;
-      font-weight: 200;
+      font-size: clamp(40px, 6vw, 95px);
+      font-weight: 700;
+      -webkit-text-stroke: 1px #e4e0d9;
+      color: transparent;
     }
   
     .text__icon {
@@ -68,3 +79,34 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+
+  .aboutContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: calc(80px + 2rem);
+
+    .about__picture {
+      position: initial;
+    }
+
+    .about__text {
+      height: fit-content;
+      margin: 0 auto;
+      width: 100%;
+      padding: 2rem 3rem;
+      justify-content: flex-start;
+
+      .text__small {
+        margin-top: 2rem;
+      } 
+
+      .text__medium {
+        margin: 0 0 1rem;
+      }
+    }  
+  }
+
+  
+}

@@ -55,7 +55,13 @@ const Portfolio = () => {
             />
           </Route>
           <Route exact path="/experiences">
-            <Experiences homeElement={homeEl} />
+            <Experiences
+              homeElement={homeEl}
+              controls={controls}
+              setControls={setControls}
+              pageIndex={pageIndex}
+              setPageIndex={setPageIndex}
+            />
           </Route>
         </Switch>
       </AnimatePresence>

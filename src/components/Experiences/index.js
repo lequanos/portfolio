@@ -1,19 +1,40 @@
 // == Import npm
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import { motion, useAnimation } from 'framer-motion';
 
 // Import Material UI
 import { Slider, Card } from '@material-ui/core';
 
 // == Import
+import { text, background } from 'src/lib/framerVariants';
 import './styles.scss';
 
 // == Composant
-const Experiences = ({ homeElement }) => {
+const Experiences = ({
+  homeElement,
+  controls,
+  setControls,
+  pageIndex,
+  setPageIndex,
+}) => {
   const contentRef = useRef(null);
   const sliderRef = useRef(null);
   const [value, setValue] = useState(246);
   const [scrollTop, setScrollTop] = useState(0);
+  const experiencesControls = useAnimation();
+
+  useEffect(() => {
+    setControls(experiencesControls);
+    if (Object.keys(controls).length > 0) {
+      controls.start({
+        zIndex: -10,
+        transition: {
+          delay: 0.3,
+        },
+      });
+    }
+  }, [controls]);
 
   const marks = [
     {
@@ -69,10 +90,28 @@ const Experiences = ({ homeElement }) => {
     };
   }, [homeElement, scrollTop, value]);
 
+  useEffect(() => {
+    if (pageIndex !== 2) {
+      setPageIndex(2);
+    }
+  }, []);
+
   return (
-    <>
-      <aside className="experiences__picture" />
-      <div className="experiences__text" ref={contentRef}>
+    <motion.section className="experiencesContainer">
+      <motion.div
+        className="experiences__background"
+        initial={['initial']}
+        animate={controls}
+        variants={background}
+      />
+      <motion.div
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={text}
+        className="experiences__text"
+        ref={contentRef}
+      >
         <div>
           <h2 className="text__large">
             Expériences
@@ -95,17 +134,25 @@ const Experiences = ({ homeElement }) => {
             </Card>
           </div>
         </div>
-      </div>
-    </>
+      </motion.div>
+    </motion.section>
   );
 };
 
 Experiences.propTypes = {
   homeElement: PropTypes.object,
+  controls: PropTypes.object,
+  setControls: PropTypes.func,
+  pageIndex: PropTypes.number,
+  setPageIndex: PropTypes.func,
 };
 
 Experiences.defaultProps = {
   homeElement: {},
+  controls: {},
+  setControls: () => {},
+  pageIndex: 1,
+  setPageIndex: () => {},
 };
 
 // == Export

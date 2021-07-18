@@ -1,8 +1,10 @@
 .home__background {
   background-color: #E4E0D9;
-  height: 300vh;
-  width: 300vw;
-  position: absolute;
+  height: 320vh;
+  min-height: 1800px;
+  width: 320vw;
+  min-width: 2200px;
+  position: fixed;
   top: -120vh;
   left: -120vw;
   z-index: -11;

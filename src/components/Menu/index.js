@@ -14,8 +14,9 @@ const Menu = ({
   controls,
 }) => {
   const [menuItemClass, setMenuItemClass] = useState('navbar__item');
+  const [aLinkClass, setALinkClass] = useState('');
 
-  const handleClick = (e, page, nextPageIndex) => {
+  const handleClick = (page, nextPageIndex) => {
     setHomeBgColor(page);
     if (nextPageIndex > pageIndex) {
       controls.start({
@@ -46,12 +47,19 @@ const Menu = ({
     switch (pageIndex) {
       case 0:
         setMenuItemClass('navbar__item');
+        setALinkClass('');
         break;
       case 1:
         setMenuItemClass('navbar__item navbar__item--about');
+        setALinkClass('about__link');
+        break;
+      case 2:
+        setMenuItemClass('navbar__item navbar__item--experiences');
+        setALinkClass('experiences__link');
         break;
       default:
         setMenuItemClass('navbar__item');
+        setALinkClass('');
     }
   }, [pageIndex]);
 
@@ -63,7 +71,8 @@ const Menu = ({
             exact
             to="/"
             activeClassName="active"
-            onClick={(e) => handleClick(e, '', 0)}
+            onClick={() => handleClick('', 0)}
+            className={aLinkClass}
           >
             Accueil
           </NavLink>
@@ -73,7 +82,8 @@ const Menu = ({
             exact
             to="/a-propos"
             activeClassName="active"
-            onClick={(e) => handleClick(e, 'about', 1)}
+            onClick={() => handleClick('about', 1)}
+            className={aLinkClass}
           >
             A propos
           </NavLink>
@@ -83,6 +93,8 @@ const Menu = ({
             exact
             to="/experiences"
             activeClassName="active"
+            onClick={() => handleClick('experiences', 2)}
+            className={aLinkClass}
           >
             Expériences
           </NavLink>
@@ -92,6 +104,7 @@ const Menu = ({
             exact
             to="/competences"
             activeClassName="active"
+            className={aLinkClass}
           >
             Mes compétences
           </NavLink>
@@ -101,6 +114,7 @@ const Menu = ({
             exact
             to="/mes-projets"
             activeClassName="active"
+            className={aLinkClass}
           >
             Mes projets
           </NavLink>
@@ -110,6 +124,7 @@ const Menu = ({
             exact
             to="/me-contacter"
             activeClassName="active"
+            className={aLinkClass}
           >
             Me contacter
           </NavLink>

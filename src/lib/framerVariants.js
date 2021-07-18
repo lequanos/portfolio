@@ -19,7 +19,7 @@ export const picture = {
     opacity: 0,
   },
   animate: {
-    opacity: 0.6,
+    opacity: 0.5,
     zIndex: -10,
     transition: {
       delay: 1,
