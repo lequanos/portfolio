@@ -1,0 +1,55 @@
+[
+  {
+    "date": "Juillet 2021",
+    "title": "Création d'un menu consultatif Mobile first",
+    "subtitle": "Restaurant Yojisu",
+    "link": "http://menu.yoji.fr",
+    "tasks": [
+      "Développement d'une API REST sur NodeJS/Express",
+      "Création et gestion d'une base de données PostgresQL",
+      "Connexion à une API externe",
+      "Développement du côté client avec NextJS et Redux",
+      "Utilisation de Material UI",
+      "Authentification avec JWT",
+      "Déploiement sur un VPS OVH"
+    ]
+  },
+  {
+    "date": "Juin 2021",
+    "title": "Certification Opquast",
+    "subtitle": "Maîtrise de la Qualité en Projet Web",
+    "link": "",
+    "tasks": [
+      "Score de 845 / 1000",
+      "Niveau Avancé"
+    ]
+  },
+  {
+    "date": "Novembre 2020 - Mai 2021",
+    "title": "École O'Clock",
+    "subtitle": "Formation développeur Web et Web mobile en téléprésentiel",
+    "link": "",
+    "tasks": [
+      "Formation intensive de 700h",
+      "3 mois de socle: HTML/CSS/JS/SQL",
+      "1 mois de spécialisation DATA & API",
+      "1 mois de projet (Diamond Dreams)"
+    ]
+  },
+  {
+    "date": "Avril 2021",
+    "title": "Création d'un site d'e-commerce de bijoux",
+    "subtitle": "Diamond Dreams",
+    "link": "",
+    "tasks": [
+      "Développement d'une API REST sur NodeJS/Express",
+      "Développement d'une API GraphQL avec Apollo Server",
+      "Création d'une base de données PostgresQL",
+      "Versionnement de la base de données avec Sqitch",
+      "Authentification avec JWT",
+      "Intégration d'un module de paiement avec Stripe",
+      "Développement du côté client avec React et Redux",
+      "Déploiement de l'API sur Heroku"
+    ]
+  }
+]

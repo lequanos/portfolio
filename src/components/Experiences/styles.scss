@@ -28,16 +28,11 @@
   }
 
   .experiences__text {
-    height: fit-content;
-    padding: 0 5rem 4rem;
-    max-width: 70%;
-    color: #F7F5F4;
-    min-height: 100vh;
+    margin: calc(80px + 4rem) 0;
+    color: #e4e0d9;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    line-height: 2.5em;
-    margin-left: calc(30% + 0.3rem);
+    align-items: center;
     background-color: transparent;
     width: 100%;
 
@@ -48,17 +43,15 @@
     } 
 
     .text__large {
-      font-size: clamp(30px, 3vw, 64px);
-      font-weight: 400;
-      position: fixed;
-      height: 40%;
-      z-index: 10;
-      padding-top: 9rem;
+      font-size: clamp(40px, 6vw, 95px);
+      font-weight: 700;
+      -webkit-text-stroke: 1px #e4e0d9;
+      color: transparent;
+      text-align: center;
     }
 
     .text__medium {
-      font-size: clamp(20px, 2vw, 43px);
-      margin: 2rem 0 1rem;
+      font-size: clamp(14px, 2vw, 20px);
       font-weight: 200;
     }
 
@@ -73,16 +66,26 @@
     }
 
     .timeline {
-      margin-top: 40%;
-      height: 200vh;
-      display: flex;
-      justify-content: space-between;
+      margin-top: 4rem;
+      width: 80%;
+      color: #000;
+      line-height: 1.5;
 
-      .card {
-        width: 30%;
-        height: 30vh;
-        position: fixed;
-        right: 4rem;
+      .card__title {
+        font-size: clamp(12px, 1.3vw, 16px);
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .card__subtitle {
+        font-size: clamp(12px, 1.3vw, 15px);
+        font-weight: 300;
+      }
+
+      .card__content {
+        font-size: clamp(12px, 1.3vw, 15px);
+        font-weight: 400;
+        list-style: inside;
       }
     }
   }
