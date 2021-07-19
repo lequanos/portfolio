@@ -17,6 +17,7 @@ import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 
 // == Import
 import { text, background } from 'src/lib/framerVariants';
+import useWindowSize from '../../lib/useWindowSize';
 import timelineData from './timelineData.json';
 import './styles.scss';
 
@@ -27,12 +28,17 @@ const Experiences = ({
   pageIndex,
   setPageIndex,
 }) => {
+  const { width } = useWindowSize();
   const experiencesControls = useAnimation();
   const theme = createTheme({
     overrides: {
-      MuiPaper: {
+      MuiTimelineDot: {
+        outlinedGrey: {
+          borderColor: '#e4e0d9',
+        },
+      },
+      MuiTimelineConnector: {
         root: {
-          padding: '1rem',
           backgroundColor: '#e4e0d9',
         },
       },
@@ -44,11 +50,16 @@ const Experiences = ({
       },
       MuiTimelineContent: {
         root: {
-          flex: 0.5,
+          flex: width > 600 ? 0.5 : 1,
         },
       },
       MuiTimelineItem: {
         oppositeContent: {
+          '&::before': {
+            flex: 0,
+          },
+        },
+        missingOppositeContent: {
           '&::before': {
             flex: 0,
           },
@@ -95,37 +106,73 @@ const Experiences = ({
         </h2>
         <ThemeProvider theme={theme}>
           <div className="timeline">
-            <Timeline align="right">
+            <Timeline align={width > 600 ? 'right' : 'left'}>
               {timelineData.map((element) => (
-                <TimelineItem>
-                  <TimelineOppositeContent>
-                    <h6 className="card__title">
-                      {element.title}
-                    </h6>
-                    <h7 className="card__subtitle">
-                      {element.subtitle}
-                      {element.link
-                        && (
-                          <> | <a href={element.link} target="_blank" rel="noreferrer">{element.link}</a></>
-                        )}
-                    </h7>
-                    <br />
-                    <br />
-                    <ul className="card__content">
-                      {element.tasks.map((task) => (
-                        <li>
-                          {task}
-                        </li>
-                      ))}
-                    </ul>
-                    <br />
-                    <br />
-                  </TimelineOppositeContent>
+                <TimelineItem key={element.id}>
+                  {width > 600
+                    && (
+                      <TimelineOppositeContent className="card">
+                        <div className="card__header">
+                          <h5 className="card__title">
+                            {element.title}
+                          </h5>
+                          <h6 className="card__subtitle">
+                            {element.subtitle}
+                            {element.link
+                              && (
+                                <> | <a href={element.link} target="_blank" rel="noreferrer">{element.link}</a></>
+                              )}
+                          </h6>
+                        </div>
+                        <br />
+                        <ul className="card__content">
+                          {element.tasks.map((task) => (
+                            <li key={task}>
+                              {task}
+                            </li>
+                          ))}
+                        </ul>
+                        <br />
+                        <br />
+                      </TimelineOppositeContent>
+                    )}
                   <TimelineSeparator>
-                    <TimelineDot />
+                    <TimelineDot variant="outlined" />
                     <TimelineConnector />
                   </TimelineSeparator>
-                  <TimelineContent>{element.date}</TimelineContent>
+                  <TimelineContent>
+                    {width > 600
+                      ? element.date
+                      : (
+                        <div className="card">
+                          {element.date}
+                          <br />
+                          <br />
+                          <div className="card__header">
+                            <h5 className="card__title">
+                              {element.title}
+                            </h5>
+                            <h6 className="card__subtitle">
+                              {element.subtitle}
+                              {element.link
+                                && (
+                                  <> | <a href={element.link} target="_blank" rel="noreferrer">{element.link}</a></>
+                                )}
+                            </h6>
+                          </div>
+                          <br />
+                          <ul className="card__content">
+                            {element.tasks.map((task) => (
+                              <li key={task}>
+                                {task}
+                              </li>
+                            ))}
+                          </ul>
+                          <br />
+                          <br />
+                        </div>
+                      )}
+                  </TimelineContent>
                 </TimelineItem>
               ))}
             </Timeline>

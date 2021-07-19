@@ -71,23 +71,38 @@
       color: #000;
       line-height: 1.5;
 
-      .card__title {
-        font-size: clamp(12px, 1.3vw, 16px);
-        font-weight: 700;
-        text-transform: uppercase;
-      }
+      .card {
 
-      .card__subtitle {
-        font-size: clamp(12px, 1.3vw, 15px);
-        font-weight: 300;
-      }
-
-      .card__content {
-        font-size: clamp(12px, 1.3vw, 15px);
-        font-weight: 400;
-        list-style: inside;
+        &__title {
+          font-size: clamp(12px, 1.3vw, 16px);
+          font-weight: 700;
+          text-transform: uppercase;
+        }
+  
+        &__subtitle {
+          font-size: clamp(12px, 1.3vw, 15px);
+          font-weight: 300;
+        }
+  
+        &__content {
+          font-size: clamp(12px, 1.3vw, 15px);
+          font-weight: 400;
+          list-style: inside;
+        }
       }
     }
   }
 }
 
+@media screen and (max-width: 768px) {
+
+  .experiencesContainer {
+
+    .experiences__text {
+
+      .timeline {
+        width: 100%;
+      }
+    }
+  }
+}
