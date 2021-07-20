@@ -1,5 +1,5 @@
 // == Import npm
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
@@ -8,24 +8,19 @@ import Home from 'src/components/Home';
 import Menu from 'src/components/Menu';
 import About from 'src/components/About';
 import Experiences from 'src/components/Experiences';
+import Skills from 'src/components/Skills';
+import Projects from 'src/components/Projects';
 import './styles.scss';
 
 // == Composant
 const Portfolio = () => {
   const location = useLocation();
-  const [homeBgColor, setHomeBgColor] = useState('');
   const [pageIndex, setPageIndex] = useState(0);
   const [controls, setControls] = useState();
-  const [cn, setCn] = useState('home');
-
-  useEffect(() => {
-    setCn(`home ${homeBgColor}`);
-  }, [homeBgColor]);
 
   return (
-    <div className={cn}>
+    <div className="home">
       <Menu
-        setHomeBgColor={setHomeBgColor}
         setPageIndex={setPageIndex}
         pageIndex={pageIndex}
         controls={controls}
@@ -50,6 +45,22 @@ const Portfolio = () => {
           </Route>
           <Route exact path="/experiences">
             <Experiences
+              controls={controls}
+              setControls={setControls}
+              pageIndex={pageIndex}
+              setPageIndex={setPageIndex}
+            />
+          </Route>
+          <Route exact path="/competences">
+            <Skills
+              controls={controls}
+              setControls={setControls}
+              pageIndex={pageIndex}
+              setPageIndex={setPageIndex}
+            />
+          </Route>
+          <Route exact path="/mes-projets">
+            <Projects
               controls={controls}
               setControls={setControls}
               pageIndex={pageIndex}

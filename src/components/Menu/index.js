@@ -8,7 +8,6 @@ import './styles.scss';
 
 // == Composant
 const Menu = ({
-  setHomeBgColor,
   setPageIndex,
   pageIndex,
   controls,
@@ -16,8 +15,7 @@ const Menu = ({
   const [menuItemClass, setMenuItemClass] = useState('navbar__item');
   const [aLinkClass, setALinkClass] = useState('');
 
-  const handleClick = (page, nextPageIndex) => {
-    setHomeBgColor(page);
+  const handleClick = (e, nextPageIndex) => {
     if (nextPageIndex > pageIndex) {
       controls.start({
         x: -2000,
@@ -28,6 +26,9 @@ const Menu = ({
           ease: 'easeIn',
         },
       });
+    }
+    else if (nextPageIndex === pageIndex) {
+      e.preventDefault();
     }
     else {
       controls.start({
@@ -57,6 +58,10 @@ const Menu = ({
         setMenuItemClass('navbar__item navbar__item--experiences');
         setALinkClass('experiences__link');
         break;
+      case 3:
+        setMenuItemClass('navbar__item navbar__item--skills');
+        setALinkClass('skills__link');
+        break;
       default:
         setMenuItemClass('navbar__item');
         setALinkClass('');
@@ -71,7 +76,7 @@ const Menu = ({
             exact
             to="/"
             activeClassName="active"
-            onClick={() => handleClick('', 0)}
+            onClick={(e) => handleClick(e, 0)}
             className={aLinkClass}
           >
             Accueil
@@ -82,7 +87,7 @@ const Menu = ({
             exact
             to="/a-propos"
             activeClassName="active"
-            onClick={() => handleClick('about', 1)}
+            onClick={(e) => handleClick(e, 1)}
             className={aLinkClass}
           >
             A propos
@@ -93,7 +98,7 @@ const Menu = ({
             exact
             to="/experiences"
             activeClassName="active"
-            onClick={() => handleClick('experiences', 2)}
+            onClick={(e) => handleClick(e, 2)}
             className={aLinkClass}
           >
             Expériences
@@ -105,6 +110,7 @@ const Menu = ({
             to="/competences"
             activeClassName="active"
             className={aLinkClass}
+            onClick={(e) => handleClick(e, 3)}
           >
             Mes compétences
           </NavLink>
@@ -115,6 +121,7 @@ const Menu = ({
             to="/mes-projets"
             activeClassName="active"
             className={aLinkClass}
+            onClick={(e) => handleClick(e, 4)}
           >
             Mes projets
           </NavLink>
@@ -135,7 +142,6 @@ const Menu = ({
 };
 
 Menu.propTypes = {
-  setHomeBgColor: PropTypes.func,
   setPageIndex: PropTypes.func,
   controls: PropTypes.shape({
     start: PropTypes.func,
@@ -144,7 +150,6 @@ Menu.propTypes = {
 };
 
 Menu.defaultProps = {
-  setHomeBgColor: () => {},
   setPageIndex: () => {},
   controls: {},
   pageIndex: 0,

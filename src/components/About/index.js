@@ -57,7 +57,7 @@ const About = ({
         className="about__text"
       >
         <div>
-          <h2 className="text__medium">
+          <h2 className="text__large">
             À propos de moi
           </h2>
           <p className="text__small">
@@ -73,7 +73,8 @@ const About = ({
             Cette formation m'a notamment permis d'acquérir de solides compétences en Javascript,
             avec entre autres ReactJS en Front-End et NodeJS en Back-End avec le framework Express.
             Mais elle m'a surtout permis d'avoir les clés pour apprendre en
-            autonomie de nouveaux outils.
+            autonomie de nouveaux outils, comme c'est le cas de Typescript, NextJS
+            et de Python actuellement.
             <br />
             <br />
             Au-delà de tout ça, je suis également un passionné de café sous toute ses formes,

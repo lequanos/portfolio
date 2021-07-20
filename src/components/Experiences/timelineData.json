@@ -12,7 +12,8 @@
       "Développement du côté client avec NextJS et Redux",
       "Utilisation de Material UI",
       "Authentification avec JWT",
-      "Déploiement sur un VPS OVH"
+      "Déploiement sur un VPS OVH",
+      "Intégration de Google Analytics"
     ]
   },
   {
@@ -29,8 +30,8 @@
   {
     "id": 3,
     "date": "Novembre 2020 - Mai 2021",
-    "title": "École O'Clock",
-    "subtitle": "Formation développeur Web et Web mobile en téléprésentiel",
+    "title": "Formation développeur Web et Web mobile en téléprésentiel",
+    "subtitle": "École O'Clock", 
     "link": "",
     "tasks": [
       "Formation intensive de 700h",
@@ -60,7 +61,7 @@
     "id": 5,
     "date": "Juin 2012 - Novembre 2020",
     "title": "Directeur de restaurant",
-    "subtitle": "Yojisu",
+    "subtitle": "Yojisu - La Pioline",
     "link": "https://www.yoji.fr",
     "tasks": [
       "Gestion d'une équipe de 30 personnes",
@@ -76,8 +77,8 @@
   {
     "id": 6,
     "date": "Janvier 2018",
-    "title": "Torréfacteur Mokxa",
-    "subtitle": "Formation de Barista",
+    "title": "Formation de Barista",
+    "subtitle": "Torréfacteur Mokxa",
     "link": "",
     "tasks": [
       "Découverte de la production et torréfaction",
@@ -91,8 +92,8 @@
   {
     "id": 7,
     "date": "Août 2016 - Décembre 2016",
-    "title": "INBP Rouen",
-    "subtitle": "CAP Boulanger",
+    "title": "CAP Boulanger",
+    "subtitle": "INBP Rouen",
     "link": "",
     "tasks": [
       "Formation intensive de 600h",
@@ -115,8 +116,8 @@
   {
     "id": 9,
     "date": "Juin 2010",
-    "title": "ESARC Evolution",
-    "subtitle": "Obtention du BTS Assistant de gestion",
+    "title": "BTS Assistant de gestion",
+    "subtitle": "ESARC Evolution",
     "link": "",
     "tasks": [
       "Formation en alternance"

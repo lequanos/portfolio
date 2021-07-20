@@ -18,8 +18,12 @@
       font-size: clamp(8px, 1.3vw, 14px);
       font-weight: 100;
 
-      &--about, &--experiences {
+      &--about, &--skills {
         color: #e4e0d9;
+      }
+
+      &--experiences {
+        color: #000;
       }
 
       a {
@@ -38,9 +42,10 @@
         }
       }
 
-      .about__link, .experiences__link {
+      .about__link, .skills__link {
         background-image: linear-gradient(#e4e0d9, #e4e0d9);
       }
+
     }
   }
 }

@@ -19,7 +19,7 @@
     min-width: 150px;
     max-width: 450px;
     border-radius: 50%;
-    background: url(../../../public/IMG_20180501_112141.jpg);
+    background: url(../../assets/IMG_20180501_112141.jpg);
     background-size: cover;
     background-position: center;
     position: fixed;
@@ -54,27 +54,11 @@
     } 
   
     .text__large {
-      font-size: clamp(40px, 6vw, 120px);
-      font-weight: 400;
-      margin: 1rem 0;
-    }
-  
-    .text__medium {
       margin: 2rem 0 1rem;
       font-size: clamp(40px, 6vw, 95px);
       font-weight: 700;
       -webkit-text-stroke: 1px #e4e0d9;
       color: transparent;
-    }
-  
-    .text__icon {
-      margin-right: 2rem;
-      height: fit-content;
-      cursor: pointer;
-  
-      &:hover {
-        color: #5F758E;
-      }
     }
   }
 }
@@ -102,7 +86,7 @@
         margin-top: 2rem;
       } 
 
-      .text__medium {
+      .text__large {
         margin: 0 0 1rem;
       }
     }  
