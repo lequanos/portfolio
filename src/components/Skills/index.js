@@ -105,7 +105,7 @@ const Skills = ({
         className="skills__container"
       >
         <h2 className="text__large">
-          Mes compétences
+          Mes Compétences
         </h2>
         <motion.div
           className="text__skills"

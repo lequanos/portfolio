@@ -23,6 +23,7 @@ const Projects = ({
   const picturesControls = useAnimation();
   const pictureControls = projectsData.map(() => useAnimation());
   const [sliderValue, setSliderValue] = useState(0);
+  const [grabbing, setGrabbing] = useState(false);
 
   const theme = createTheme({
     overrides: {
@@ -41,7 +42,7 @@ const Projects = ({
         },
         track: {
           height: '1px',
-          transition: 'all 0.5s ease-in-out',
+          transition: 'all 0.3s ease-in-out',
         },
       },
     },
@@ -85,6 +86,44 @@ const Projects = ({
     }
   };
 
+  const handleOnMouseDown = (e) => {
+    e.preventDefault();
+    setGrabbing(true);
+    picturesControls.start({
+      cursor: 'grabbing',
+    });
+  };
+
+  const handleOnMouseUp = (e) => {
+    e.preventDefault();
+    setGrabbing(false);
+    picturesControls.start({
+      cursor: 'grab',
+    });
+  };
+
+  const handleOnMouseMove = (e) => {
+    e.preventDefault();
+    if (grabbing) {
+      if (e.movementX < 0) {
+        setSliderValue((prevValue) => {
+          if (prevValue < 100) {
+            return prevValue + 4;
+          }
+          return prevValue;
+        });
+      }
+      else if (e.movementX > 0) {
+        setSliderValue((prevValue) => {
+          if (prevValue > 0) {
+            return prevValue - 4;
+          }
+          return prevValue;
+        });
+      }
+    }
+  };
+
   useEffect(() => {
     setControls(projectsControls);
     if (Object.keys(controls).length > 0) {
@@ -116,15 +155,15 @@ const Projects = ({
       translateX: `-${sliderValue * 5}px`,
       transition: {
         duration: 0.5,
-        ease: 'easeInOut',
+        ease: 'easeOut',
       },
     });
     pictureControls.forEach((picControls) => {
       picControls.start({
-        backgroundPosition: `${35 + (sliderValue / 6)}%`,
+        backgroundPosition: `${-400 - (sliderValue)}px`,
         transition: {
           duration: 0.5,
-          ease: 'easeInOut',
+          ease: 'easeOut',
         },
       });
     });
@@ -152,23 +191,29 @@ const Projects = ({
           <motion.div
             className="content__pictures"
             animate={picturesControls}
+            onMouseDown={handleOnMouseDown}
+            onMouseUp={handleOnMouseUp}
+            onMouseMove={handleOnMouseMove}
           >
             {projectsData.map((project, index) => (
               <motion.div
                 className="content__picture"
                 style={{ backgroundImage: `url(${project.url})` }}
                 initial={{
-                  backgroundPositionX: '25%',
+                  backgroundPositionX: '-280px',
                 }}
                 animate={pictureControls[index]}
               >
-                <h5>{project.title}</h5>
-                <p>
+                <div className="content__picture--curtain" />
+                <h5 className="text__medium">{project.title}</h5>
+                <p className="content__text">
                   {project.subtitle}
+                  <br />
                   {project.context}
+                  <br />
                   {project.link}
                 </p>
-                <ul>
+                <ul className="content__text">
                   {project.tasks.map((task) => (
                     <li>{task}</li>
                   ))}

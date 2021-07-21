@@ -2,7 +2,7 @@
   background-color: transparent;
 
   .projects__background {
-    background-color: #5D7ABC;
+    background-color: #8CA0CF;
     height: 320vh;
     min-height: 1800px;
     width: 320vw;
@@ -27,16 +27,38 @@
         display: flex;
         flex-wrap: nowrap;
         overflow: hidden;
+        cursor: grab;
 
         .content__picture {
           display: flex;
           flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
           width: 600px;
           height: 780px;
           margin: 0 2rem;
           background-position: center;
           background-repeat: no-repeat;
           background-size: cover;
+
+          &--curtain {
+            position: fixed;
+            width: 600px;
+            height: 780px;
+            background-color: #000;
+            opacity: 0.7;
+            z-index: 0;
+          }
+        }
+
+        .text__medium {
+          z-index: 1;
+          font-size: clamp(16px, 6vw, 48px);
+        }
+
+        .content__text {
+          z-index: 1;
         }
       }
 
