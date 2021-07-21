@@ -45,12 +45,16 @@ const Experiences = ({
       MuiTimeline: {
         root: {
           width: '100%',
-          fontFamily: 'Roboto',
+          fontFamily: "'Roboto', sans serif",
         },
       },
       MuiTimelineContent: {
         root: {
           flex: width > 600 ? 0.5 : 1,
+        },
+        alignRight: {
+          fontFamily: "'Roboto Slab', serif",
+          fontWeight: 300,
         },
       },
       MuiTimelineItem: {
