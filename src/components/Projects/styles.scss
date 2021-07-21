@@ -14,14 +14,36 @@
     overflow: hidden;
   }
   
-  .projects__text {
-    margin-top: calc(80px + 4rem);
+  .projects__container {
+    margin-top: calc(80px + 2rem);
     color: #e4e0d9;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     background-color: transparent;
     width: 100%;
+
+    .projects__content {
+
+      .content__pictures {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow: hidden;
+
+        .content__picture {
+          display: flex;
+          flex-direction: column;
+          width: 600px;
+          height: 780px;
+          margin: 0 2rem;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+      }
+
+      .content__slider {
+        width: 60%;
+      }
+    }
   
     .text__small {
       font-size: clamp(12px, 3.5vw, 17px);
@@ -34,7 +56,8 @@
       font-weight: 700;
       -webkit-text-stroke: 1px #e4e0d9;
       color: transparent;
-      text-align: center;
+      text-align: left;
+      margin-left: 4rem;
     }
   }
 }

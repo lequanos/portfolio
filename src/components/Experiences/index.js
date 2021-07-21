@@ -193,68 +193,9 @@ Experiences.propTypes = {
 Experiences.defaultProps = {
   controls: {},
   setControls: () => {},
-  pageIndex: 1,
+  pageIndex: 2,
   setPageIndex: () => {},
 };
 
 // == Export
 export default Experiences;
-
-// const contentRef = useRef(null);
-// const sliderRef = useRef(null);
-// const [value, setValue] = useState(246);
-// const [scrollTop, setScrollTop] = useState(0);
-
-// const marks = [
-//   {
-//     value: 31,
-//     label: 'Juillet 2003',
-//   },
-//   {
-//     value: 67,
-//     label: 'Juillet 2006',
-//   },
-//   {
-//     value: 246,
-//     label: 'Juin 2021',
-//   },
-// ];
-
-// const valuetext = (v) => (
-//   `${v}°C`
-// );
-
-// // eslint-disable-next-line consistent-return
-// const handleScroll = (e) => {
-//   e.preventDefault();
-//   const { current: contentEl } = contentRef;
-//   if (e.deltaY === 100) {
-//     marks.forEach((mark, index) => {
-//       if (value === mark.value) {
-//         const nextMarkIndex = index - 1 >= 0 ? index - 1 : index;
-//         const nextMark = document.querySelector(`[data-index='${nextMarkIndex}']`);
-//         nextMark.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
-//         setValue(marks[nextMarkIndex].value);
-//       }
-//     });
-//   }
-//   else if (e.deltaY === -100) {
-//     marks.forEach((mark, index) => {
-//       if (value === mark.value) {
-//         const nextMarkIndex = index + 1 <= (marks.length - 1) ? index + 1 : (marks.length - 1);
-//         const nextMark = document.querySelector(`[data-index='${nextMarkIndex}']`);
-//         nextMark.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
-//         setValue(marks[nextMarkIndex].value);
-//       }
-//     });
-//   }
-//   setScrollTop(contentEl.getBoundingClientRect().top);
-// };
-
-// useEffect(() => {
-//   homeElement?.addEventListener('wheel', handleScroll);
-
-//   return () => {
-//     homeElement?.removeEventListener('wheel', handleScroll);
-//   };
-// }, [homeElement, scrollTop, value]);

@@ -1,14 +1,14 @@
-import reactLogo from '../../assets/skills/React-icon.svg';
-import expressLogo from '../../assets/skills/Expressjs.svg';
-import graphQLLogo from '../../assets/skills/GraphQL_Logo.svg';
-import mongoDBLogo from '../../assets/skills/MongoDB_Logo.svg';
-import nextJSLogo from '../../assets/skills/Nextjs-logo.svg';
-import nodeJSLogo from '../../assets/skills/Node.js_logo.svg';
-import postgresQLLogo from '../../assets/skills/Postgresql_elephant.svg';
-import reduxLogo from '../../assets/skills/Redux_Logo.svg';
-import cssLogo from '../../assets/skills/Devicon-css3-plain.svg';
-import htmlLogo from '../../assets/skills/Devicon-html5-plain.svg';
-import jsLogo from '../../assets/skills/Javascript_Logo.svg';
+import reactLogo from 'src/assets/skills/React-icon.svg';
+import expressLogo from 'src/assets/skills/Expressjs.svg';
+import graphQLLogo from 'src/assets/skills/GraphQL_Logo.svg';
+import mongoDBLogo from 'src/assets/skills/MongoDB_Logo.svg';
+import nextJSLogo from 'src/assets/skills/Nextjs-logo.svg';
+import nodeJSLogo from 'src/assets/skills/Node.js_logo.svg';
+import postgresQLLogo from 'src/assets/skills/Postgresql_elephant.svg';
+import reduxLogo from 'src/assets/skills/Redux_Logo.svg';
+import cssLogo from 'src/assets/skills/Devicon-css3-plain.svg';
+import htmlLogo from 'src/assets/skills/Devicon-html5-plain.svg';
+import jsLogo from 'src/assets/skills/Javascript_Logo.svg';
 
 export default [
   {

@@ -122,7 +122,7 @@ Home.propTypes = {
 Home.defaultProps = {
   controls: {},
   setControls: () => {},
-  pageIndex: 1,
+  pageIndex: 0,
   setPageIndex: () => {},
 };
 

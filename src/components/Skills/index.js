@@ -102,7 +102,7 @@ const Skills = ({
         animate="animate"
         exit="exit"
         variants={text}
-        className="skills__text"
+        className="skills__container"
       >
         <h2 className="text__large">
           Mes compétences
@@ -151,7 +151,7 @@ Skills.propTypes = {
 Skills.defaultProps = {
   controls: {},
   setControls: () => {},
-  pageIndex: 1,
+  pageIndex: 3,
   setPageIndex: () => {},
 };
 
