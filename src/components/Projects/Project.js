@@ -1,11 +1,12 @@
 // == Import npm
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { motion, useAnimation } from 'framer-motion';
 
 // == Import
 import xMark from 'src/assets/projects/x-mark.svg';
 import plus from 'src/assets/projects/plus.svg';
+import usePrevious from 'src/lib/usePrevious';
 import './styles.scss';
 
 // == Composant
@@ -20,64 +21,64 @@ const Project = ({
   projectsData,
   pictureControls,
   titlesControls,
+  projectIndex,
+  setProjectIndex,
 }) => {
   const overprintsControls = projectsData.map(() => useAnimation());
+  const prevProjectIndex = usePrevious(projectIndex);
 
   const handleButtonClick = (ind) => {
-    overprintsControls[ind].start({
-      y: 0,
-      transition: {
-        duration: 0.7,
-        ease: 'easeOut',
-      },
-    });
-    const otherTitlesControls = titlesControls.filter((control, indx) => indx !== ind);
-    otherTitlesControls.forEach((titleControl) => {
-      titleControl.start({
-        opacity: 0.3,
-        transition: {
-          duration: 0.3,
-          ease: 'easeInOut',
-        },
-      });
-      titleControl.start({
-        zIndex: -1,
-        transition: {
-          delay: 0.3,
-          duration: 0.3,
-          ease: 'easeInOut',
-        },
-      });
-    });
+    if (projectIndex === null) {
+      setProjectIndex(ind);
+    }
   };
 
-  const handleCloseButtonClick = (ind) => {
-    overprintsControls[ind].start({
-      y: 1000,
-      transition: {
-        duration: 0.7,
-        ease: 'easeIn',
-      },
-    });
-    const otherTitlesControls = titlesControls.filter((control, indx) => indx !== ind);
-    otherTitlesControls.forEach((titleControl) => {
-      titleControl.start({
-        opacity: 1,
-        transition: {
-          delay: 0.3,
-          duration: 0.3,
-          ease: 'easeInOut',
-        },
-      });
-      titleControl.start({
-        zIndex: 0,
-        transition: {
-          duration: 0.3,
-          ease: 'easeInOut',
-        },
-      });
-    });
+  const handleCloseButtonClick = () => {
+    setProjectIndex(null);
   };
+
+  useEffect(() => {
+    if (projectIndex !== null) {
+      overprintsControls[projectIndex]?.start({
+        y: 0,
+        transition: {
+          duration: 0.7,
+          ease: 'easeOut',
+        },
+      });
+      const otherTitlesControls = titlesControls.filter((control, indx) => indx !== projectIndex);
+      otherTitlesControls.forEach((titleControl) => {
+        titleControl.start({
+          opacity: 0.3,
+          transition: {
+            duration: 0.3,
+            ease: 'easeInOut',
+          },
+        });
+      });
+    }
+    else if (projectIndex === null) {
+      overprintsControls[prevProjectIndex]?.start({
+        y: 1000,
+        transition: {
+          duration: 0.7,
+          ease: 'easeIn',
+        },
+      });
+      const otherTitlesControls = titlesControls.filter(
+        (control, indx) => indx !== prevProjectIndex,
+      );
+      otherTitlesControls.forEach((titleControl) => {
+        titleControl.start({
+          opacity: 1,
+          transition: {
+            duration: 0.3,
+            ease: 'easeInOut',
+          },
+        });
+      });
+    }
+  }, [projectIndex]);
 
   return (
     <motion.div
@@ -133,7 +134,7 @@ const Project = ({
           src={xMark}
           alt="Close button"
           className="content__button content__button--close"
-          onClick={() => handleCloseButtonClick(index)}
+          onClick={() => handleCloseButtonClick()}
         />
       </motion.div>
     </motion.div>
@@ -153,6 +154,8 @@ Project.propTypes = {
   ),
   pictureControls: PropTypes.array,
   titlesControls: PropTypes.array,
+  projectIndex: PropTypes.number,
+  setProjectIndex: PropTypes.func,
 };
 
 Project.defaultProps = {
@@ -166,6 +169,8 @@ Project.defaultProps = {
   projectsData: [],
   pictureControls: [],
   titlesControls: [],
+  projectIndex: null,
+  setProjectIndex: () => {},
 };
 
 // == Export

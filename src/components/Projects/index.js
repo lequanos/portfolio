@@ -26,6 +26,7 @@ const Projects = ({
   const titlesControls = projectsData.map(() => useAnimation());
   const [sliderValue, setSliderValue] = useState(0);
   const [grabbing, setGrabbing] = useState(false);
+  const [projectIndex, setProjectIndex] = useState(null);
 
   const theme = createTheme({
     overrides: {
@@ -205,6 +206,8 @@ const Projects = ({
                 projectsData={projectsData}
                 pictureControls={pictureControls}
                 titlesControls={titlesControls}
+                projectIndex={projectIndex}
+                setProjectIndex={setProjectIndex}
               />
             ))}
           </motion.div>

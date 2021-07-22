@@ -43,7 +43,7 @@ export default [
     id: 3,
     url: portfolio,
     title: 'Portfolio',
-    subtitle: 'Création de mon site portfolio',
+    subtitle: 'Création de mon portfolio',
     context: 'Projet personnel',
     link: 'http://www.buri.fr',
     tasks: [
