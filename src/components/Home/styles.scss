@@ -1,101 +1,107 @@
-.home__background {
-  background-color: #E4E0D9;
-  height: 320vh;
-  min-height: 1800px;
-  width: 320vw;
-  min-width: 2200px;
-  position: fixed;
-  top: -120vh;
-  left: -120vw;
-  z-index: -11;
-  overflow: hidden;
-}
+.homeContainer {
+  min-width: 100vw;
 
-.home__text {
-  height: fit-content;
-  padding: 8rem 5rem;
-  color: #3E3F3F;
-  height: 100vh;
-  max-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  background-color: transparent;
-
-  .text__small {
-    font-size: clamp(16px, 2vw, 32px);
-    margin-top: 0.5rem;
-    font-weight: 100;
-    text-align: center;
-  } 
-
-  .text__large {
-    font-size: clamp(40px, 6vw, 120px);
-    font-family: 'Roboto Slab', serif;
-    font-weight: 400;
-    margin: 1rem 0;
-    text-align: center;
-    
-    &--React {
-      font-size: clamp(40px, 6vw, 95px);
-      font-weight: 700;
-      margin: 1rem 0;
-      text-align: center;
-      -webkit-text-stroke: 1px #000;
-      color: transparent;
-      animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-    }
-
-    &--NodeJS {
-      font-size: clamp(40px, 6vw, 95px);
-      font-weight: 900;
-      margin: 1rem 0;
-      text-align: center;
-      -webkit-text-stroke: 1px #000;
-      color: transparent;
-      animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-    }
-
-    &--NextJS {
-      font-size: clamp(40px, 6vw, 95px);
-      font-weight: 900;
-      margin: 1rem 0;
-      text-align: center;
-      -webkit-text-stroke: 1px #000;
-      color: transparent;
-      animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-    }
-
-
-  }
-
-  .text__medium {
-    font-size: clamp(30px, 3vw, 64px);
-    margin: 0.5rem 0 1rem;
-    font-weight: 200;
-    text-align: center;
-  }
-
-  .social {
+  .home__background {
+    background-color: #E4E0D9;
+    height: 320vh;
+    min-height: 1800px;
+    width: 320vw;
+    min-width: 2200px;
     position: fixed;
-    bottom: 0;
-    left: 0;
-    padding: 2rem;
-
-    .text__icon {
-      margin-right: 2rem;
-      height: fit-content;
-      cursor: pointer;
+    top: -120vh;
+    left: -120vw;
+    z-index: -11;
+    overflow: hidden;
+  }
   
-      &:hover {
-        color: #5F758E;
+  .home__text {
+    height: fit-content;
+    padding: 8rem 5rem;
+    color: #3E3F3F;
+    height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+  
+    .text__small {
+      font-size: clamp(16px, 2vw, 32px);
+      margin-top: 0.5rem;
+      font-weight: 100;
+      text-align: center;
+    } 
+  
+    .text__large {
+      font-size: clamp(40px, 6vw, 120px);
+      font-family: 'Roboto Slab', serif;
+      font-weight: 400;
+      margin: 1rem 0;
+      text-align: center;
+      
+      &--React {
+        font-size: clamp(40px, 6vw, 95px);
+        font-weight: 700;
+        margin: 1rem 0;
+        text-align: center;
+        -webkit-text-stroke: 1px #000;
+        color: transparent;
+        animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+      }
+  
+      &--NodeJS {
+        font-size: clamp(40px, 6vw, 95px);
+        font-weight: 900;
+        margin: 1rem 0;
+        text-align: center;
+        -webkit-text-stroke: 1px #000;
+        color: transparent;
+        animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+      }
+  
+      &--NextJS {
+        font-size: clamp(40px, 6vw, 95px);
+        font-weight: 900;
+        margin: 1rem 0;
+        text-align: center;
+        -webkit-text-stroke: 1px #000;
+        color: transparent;
+        animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+      }
+  
+  
+    }
+  
+    .text__medium {
+      font-size: clamp(30px, 3vw, 64px);
+      margin: 0.5rem 0 1rem;
+      font-weight: 200;
+      text-align: center;
+    }
+  
+    .social {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      padding: 2rem;
+  
+      .text__icon {
+        margin-right: 2rem;
+        height: fit-content;
+        cursor: pointer;
+    
+        &:hover {
+          color: #5F758E;
+        }
       }
     }
+    
   }
-  
 }
+
+
 
 
 

@@ -10,6 +10,7 @@ import About from 'src/components/About';
 import Experiences from 'src/components/Experiences';
 import Skills from 'src/components/Skills';
 import Projects from 'src/components/Projects';
+import Contact from 'src/components/Contact';
 import './styles.scss';
 
 // == Composant
@@ -61,6 +62,14 @@ const Portfolio = () => {
           </Route>
           <Route exact path="/mes-projets">
             <Projects
+              controls={controls}
+              setControls={setControls}
+              pageIndex={pageIndex}
+              setPageIndex={setPageIndex}
+            />
+          </Route>
+          <Route exact path="/me-contacter">
+            <Contact
               controls={controls}
               setControls={setControls}
               pageIndex={pageIndex}

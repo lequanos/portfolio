@@ -58,7 +58,7 @@ const Home = ({
   }, []);
 
   return (
-    <motion.section>
+    <motion.section className="homeContainer">
       {/* <InitialTransition /> */}
       <motion.div
         className="home__background"

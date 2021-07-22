@@ -18,14 +18,6 @@
       font-size: clamp(8px, 1.3vw, 14px);
       font-weight: 100;
 
-      &--about, &--skills {
-        color: #e4e0d9;
-      }
-
-      &--experiences {
-        color: #000;
-      }
-
       a {
         padding: 0.5rem 0;
         margin: 0 1rem;
@@ -40,10 +32,6 @@
           background-size: 100% 0.1em;
           background-position-x: 0%;
         }
-      }
-
-      .about__link, .skills__link {
-        background-image: linear-gradient(#e4e0d9, #e4e0d9);
       }
 
     }

@@ -41,15 +41,6 @@ export const background = {
       delay: 0.3,
     },
   },
-  exit: {
-    x: -2000,
-    y: -2000,
-    transition: {
-      type: 'spring',
-      duration: 1,
-      ease: 'easeIn',
-    },
-  },
 };
 
 export const skillsCurtain = {

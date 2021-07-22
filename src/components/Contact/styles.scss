@@ -1,0 +1,35 @@
+.contactContainer {
+  background-color: transparent;
+
+  .contact__background {
+    background-color: #E99072;
+    height: 320vh;
+    min-height: 1800px;
+    width: 320vw;
+    min-width: 2200px;
+    position: fixed;
+    top: -120vh;
+    left: -120vw;
+    z-index: -11;
+    overflow: hidden;
+  }
+  
+  .contact__container {
+    margin-top: calc(80px + 4rem);
+    color: #e4e0d9;
+    background-color: transparent;
+
+    .text__large {
+      font-size: clamp(40px, 6vw, 95px);
+      font-weight: 700;
+      -webkit-text-stroke: 1px #e4e0d9;
+      color: transparent;
+      text-align: center;
+    }
+
+    .contact__content {
+      width: 100%;
+    }
+        
+  } 
+}
