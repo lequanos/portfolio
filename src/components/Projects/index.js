@@ -9,6 +9,7 @@ import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 
 // == Import
 import { text, background } from 'src/lib/framerVariants';
+import Project from './Project';
 import projectsData from './projectsData';
 import './styles.scss';
 
@@ -20,9 +21,8 @@ const Projects = ({
   setPageIndex,
 }) => {
   const projectsControls = useAnimation();
-  const picturesControls = useAnimation();
   const pictureControls = projectsData.map(() => useAnimation());
-  const overprintControls = projectsData.map(() => useAnimation());
+  const picturesControls = useAnimation();
   const [sliderValue, setSliderValue] = useState(0);
   const [grabbing, setGrabbing] = useState(false);
 
@@ -125,26 +125,6 @@ const Projects = ({
     }
   };
 
-  const handleButtonClick = (index) => {
-    overprintControls[index].start({
-      y: 0,
-      transition: {
-        duration: 1,
-        ease: 'easeOut',
-      },
-    });
-  };
-
-  const handleCloseButtonClick = (index) => {
-    overprintControls[index].start({
-      y: 1000,
-      transition: {
-        duration: 1,
-        ease: 'easeIn',
-      },
-    });
-  };
-
   useEffect(() => {
     setControls(projectsControls);
     if (Object.keys(controls).length > 0) {
@@ -217,57 +197,13 @@ const Projects = ({
             onMouseMove={handleOnMouseMove}
           >
             {projectsData.map((project, index) => (
-              <motion.div
-                className="content__picture"
-                style={{ backgroundImage: `url(${project.url})` }}
-                initial={{
-                  backgroundPositionX: '-280px',
-                }}
-                animate={pictureControls[index]}
-              >
-                <div className="content__picture--curtain" />
-                <h5 className="text__medium">{project.title}</h5>
-                <button
-                  type="button"
-                  className="content__button"
-                  onClick={() => handleButtonClick(index)}
-                >
-                  +
-                </button>
-                <motion.div
-                  className="content__picture--overprint"
-                  animate={overprintControls[index]}
-                  initial={{
-                    y: 1000,
-                  }}
-                >
-                  <div className="content__description">
-                    <h6 className="content__subtitle">
-                      {project.subtitle}
-                    </h6>
-                    <h6 className="content__context">
-                      {project.context}
-                      {project.link
-                      && (
-                        <a href={project.link} className="content__link" target="_blank" rel="noreferrer">{project.link}</a>
-                      )}
-                    </h6>
-                    <br />
-                    <ul className="content__text">
-                      {project.tasks.map((task) => (
-                        <li>{task}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <button
-                    type="button"
-                    className="content__button content__button--close"
-                    onClick={() => handleCloseButtonClick(index)}
-                  >
-                    -
-                  </button>
-                </motion.div>
-              </motion.div>
+              <Project
+                key={project.id}
+                {...project}
+                index={index}
+                projectsData={projectsData}
+                pictureControls={pictureControls}
+              />
             ))}
           </motion.div>
           <ThemeProvider theme={theme}>
