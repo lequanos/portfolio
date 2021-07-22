@@ -19,26 +19,63 @@ const Project = ({
   index,
   projectsData,
   pictureControls,
+  titlesControls,
 }) => {
-  const overprintControls = projectsData.map(() => useAnimation());
+  const overprintsControls = projectsData.map(() => useAnimation());
 
   const handleButtonClick = (ind) => {
-    overprintControls[ind].start({
+    overprintsControls[ind].start({
       y: 0,
       transition: {
         duration: 0.7,
         ease: 'easeOut',
       },
     });
+    const otherTitlesControls = titlesControls.filter((control, indx) => indx !== ind);
+    otherTitlesControls.forEach((titleControl) => {
+      titleControl.start({
+        opacity: 0.3,
+        transition: {
+          duration: 0.3,
+          ease: 'easeInOut',
+        },
+      });
+      titleControl.start({
+        zIndex: -1,
+        transition: {
+          delay: 0.3,
+          duration: 0.3,
+          ease: 'easeInOut',
+        },
+      });
+    });
   };
 
   const handleCloseButtonClick = (ind) => {
-    overprintControls[ind].start({
+    overprintsControls[ind].start({
       y: 1000,
       transition: {
         duration: 0.7,
         ease: 'easeIn',
       },
+    });
+    const otherTitlesControls = titlesControls.filter((control, indx) => indx !== ind);
+    otherTitlesControls.forEach((titleControl) => {
+      titleControl.start({
+        opacity: 1,
+        transition: {
+          delay: 0.3,
+          duration: 0.3,
+          ease: 'easeInOut',
+        },
+      });
+      titleControl.start({
+        zIndex: 0,
+        transition: {
+          duration: 0.3,
+          ease: 'easeInOut',
+        },
+      });
     });
   };
 
@@ -52,16 +89,24 @@ const Project = ({
       animate={pictureControls[index]}
     >
       <div className="content__picture--curtain" />
-      <h5 className="text__medium">{title}</h5>
-      <img
-        src={plus}
-        alt="Open button"
-        className="content__button"
-        onClick={() => handleButtonClick(index)}
-      />
+      <motion.div
+        className="content__title"
+        animate={titlesControls[index]}
+        initial={{
+          opacity: 1,
+        }}
+      >
+        <h5 className="text__medium">{title}</h5>
+        <img
+          src={plus}
+          alt="Open button"
+          className="content__button"
+          onClick={() => handleButtonClick(index)}
+        />
+      </motion.div>
       <motion.div
         className="content__picture--overprint"
-        animate={overprintControls[index]}
+        animate={overprintsControls[index]}
         initial={{
           y: 1000,
         }}
@@ -107,6 +152,7 @@ Project.propTypes = {
     PropTypes.object,
   ),
   pictureControls: PropTypes.array,
+  titlesControls: PropTypes.array,
 };
 
 Project.defaultProps = {
@@ -119,6 +165,7 @@ Project.defaultProps = {
   index: 0,
   projectsData: [],
   pictureControls: [],
+  titlesControls: [],
 };
 
 // == Export

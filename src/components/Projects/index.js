@@ -23,6 +23,7 @@ const Projects = ({
   const projectsControls = useAnimation();
   const pictureControls = projectsData.map(() => useAnimation());
   const picturesControls = useAnimation();
+  const titlesControls = projectsData.map(() => useAnimation());
   const [sliderValue, setSliderValue] = useState(0);
   const [grabbing, setGrabbing] = useState(false);
 
@@ -203,6 +204,7 @@ const Projects = ({
                 index={index}
                 projectsData={projectsData}
                 pictureControls={pictureControls}
+                titlesControls={titlesControls}
               />
             ))}
           </motion.div>
