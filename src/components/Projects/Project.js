@@ -59,7 +59,7 @@ const Project = ({
     }
     else if (projectIndex === null) {
       overprintsControls[prevProjectIndex]?.start({
-        y: 1000,
+        y: 1200,
         transition: {
           duration: 0.7,
           ease: 'easeIn',
@@ -109,7 +109,7 @@ const Project = ({
         className="content__picture--overprint"
         animate={overprintsControls[index]}
         initial={{
-          y: 1000,
+          y: 1200,
         }}
       >
         <div className="content__description">

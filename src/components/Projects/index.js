@@ -1,5 +1,5 @@
 // == Import npm
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { motion, useAnimation } from 'framer-motion';
 
@@ -9,6 +9,7 @@ import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 
 // == Import
 import { text, background } from 'src/lib/framerVariants';
+import useWindowSize from 'src/lib/useWindowSize';
 import Project from './Project';
 import projectsData from './projectsData';
 import './styles.scss';
@@ -24,9 +25,13 @@ const Projects = ({
   const pictureControls = projectsData.map(() => useAnimation());
   const picturesControls = useAnimation();
   const titlesControls = projectsData.map(() => useAnimation());
+  const { width } = useWindowSize();
   const [sliderValue, setSliderValue] = useState(0);
   const [grabbing, setGrabbing] = useState(false);
   const [projectIndex, setProjectIndex] = useState(null);
+  const [xValue, setXValue] = useState();
+  const [valueToScroll, setValueToScroll] = useState(0);
+  const picturesRef = useRef();
 
   const theme = createTheme({
     overrides: {
@@ -97,6 +102,31 @@ const Projects = ({
     });
   };
 
+  const handleOnTouchStart = (e) => {
+    const xTouchValue = e.touches[0].clientX;
+    setXValue(xTouchValue);
+  };
+
+  const handleOnTouchMove = (e) => {
+    const xTouchValue = e.touches[0].clientX;
+    if (xValue > xTouchValue) {
+      setSliderValue((prevValue) => {
+        if (prevValue < 100) {
+          return prevValue + 1;
+        }
+        return prevValue;
+      });
+    }
+    else if (xValue < xTouchValue) {
+      setSliderValue((prevValue) => {
+        if (prevValue > 0) {
+          return prevValue - 1;
+        }
+        return prevValue;
+      });
+    }
+  };
+
   const handleOnMouseUp = (e) => {
     e.preventDefault();
     setGrabbing(false);
@@ -155,7 +185,7 @@ const Projects = ({
 
   useEffect(() => {
     picturesControls.start({
-      translateX: `-${sliderValue * 5}px`,
+      translateX: `-${sliderValue * ((valueToScroll + 64) / 100)}px`,
       transition: {
         duration: 0.5,
         ease: 'easeOut',
@@ -171,6 +201,13 @@ const Projects = ({
       });
     });
   }, [sliderValue]);
+
+  useEffect(() => {
+    const remValue = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    const marginLeft = width > 768 ? ((width * 20 / 100) + (4 * remValue)) : 2 * remValue;
+    const offscreenValue = picturesRef.current.clientWidth - (width - marginLeft);
+    setValueToScroll(offscreenValue);
+  }, [width]);
 
   return (
     <motion.section className="projectsContainer">
@@ -197,6 +234,9 @@ const Projects = ({
             onMouseDown={handleOnMouseDown}
             onMouseUp={handleOnMouseUp}
             onMouseMove={handleOnMouseMove}
+            onTouchStart={handleOnTouchStart}
+            onTouchMove={handleOnTouchMove}
+            ref={picturesRef}
           >
             {projectsData.map((project, index) => (
               <Project
