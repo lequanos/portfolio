@@ -31,6 +31,23 @@ export const picture = {
   },
 };
 
+export const contactPicture = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    zIndex: -10,
+    transition: {
+      delay: 1,
+      ease: 'easeInOut',
+    },
+  },
+  exit: {
+    opacity: 0,
+  },
+};
+
 export const background = {
   initial: {
     rotate: -45,

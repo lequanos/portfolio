@@ -1,5 +1,6 @@
 .contactContainer {
   background-color: transparent;
+  min-width: 100vw;
 
   .contact__background {
     background-color: #E99072;
@@ -29,6 +30,44 @@
 
     .contact__content {
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .contact__social {
+        margin: 4rem auto;
+        display: flex;
+        justify-content: space-evenly;
+        width: 30%;
+        color: #e4e0d9;
+
+        .social__category {
+          font-size: clamp(16px, 2vw, 32px);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          height: 145px;
+          font-family: 'Roboto Slab', serif;
+          overflow: hidden;
+        }
+      }
+
+      .contact__picture {
+        width: 20%;
+        min-width: 150px;
+        max-width: 450px;
+        border-radius: 50%;
+        background: url(../../assets/IMG_20180501_112141.jpg);
+        background-size: cover;
+        background-position: center;
+
+        &::after {
+          content: '';
+          display: block;
+          padding-bottom: 100%;
+        }
+      }
     }
         
   } 
