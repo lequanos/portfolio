@@ -94,7 +94,7 @@ const Experiences = ({
       <motion.div
         initial="initial"
         animate="animate"
-        exit="exit"
+        exit={width > 768 ? 'exit' : 'exitMobile'}
         variants={text}
         className="experiences__text"
       >

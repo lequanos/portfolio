@@ -6,6 +6,7 @@ import { SiGithub, SiLinkedin } from 'react-icons/si';
 
 // == Import
 // import InitialTransition from 'src/components/InitialTransition';
+import useWindowSize from 'src/lib/useWindowSize';
 import { text, background } from 'src/lib/framerVariants';
 import './styles.scss';
 
@@ -17,6 +18,7 @@ const Home = ({
   setPageIndex,
 }) => {
   const homeControls = useAnimation();
+  const { width } = useWindowSize();
   const [techno, setTechno] = useState('React');
   const cn = `texte__large text__large--${techno}`;
 
@@ -68,7 +70,7 @@ const Home = ({
       />
       <motion.div
         initial="initial"
-        exit="exit"
+        exit={width > 768 ? 'exit' : 'exitMobile'}
         animate="animate"
         variants={text}
         className="home__text"

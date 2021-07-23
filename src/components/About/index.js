@@ -5,6 +5,7 @@ import { motion, useAnimation } from 'framer-motion';
 
 // == Import
 import { text, picture, background } from 'src/lib/framerVariants';
+import useWindowSize from 'src/lib/useWindowSize';
 import './styles.scss';
 
 // == Composant
@@ -15,6 +16,7 @@ const About = ({
   setPageIndex,
 }) => {
   const aboutControls = useAnimation();
+  const { width } = useWindowSize();
 
   useEffect(() => {
     setControls(aboutControls);
@@ -45,14 +47,14 @@ const About = ({
       <motion.aside
         initial="initial"
         animate="animate"
-        exit="exit"
+        exit={width > 768 ? 'exit' : 'exitMobile'}
         variants={picture}
         className="about__picture"
       />
       <motion.div
         initial="initial"
         animate="animate"
-        exit="exit"
+        exit={width > 768 ? 'exit' : 'exitMobile'}
         variants={text}
         className="about__text"
       >

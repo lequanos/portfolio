@@ -8,4 +8,25 @@
   position: absolute;
   background-color: #E4E0D9;
   z-index: -14;
+
+  &--about {
+    background-color: #4F6492;
+  }
+
+  &--experiences {
+    background-color: #877DA3;
+  }
+
+  &--skills {
+    background-color: #5E827D;
+  }
+
+  &--projects {
+    background-color: #8CA0CF;
+  }
+
+  &--contact {
+    background-color: #E99072;
+  }
+
 }

@@ -10,6 +10,7 @@ import {
   skillsCurtain,
   skillCard,
 } from 'src/lib/framerVariants';
+import useWindowSize from 'src/lib/useWindowSize';
 import skillsData from 'src/data/skillsData';
 import SkillCard from './SkillCard';
 import './styles.scss';
@@ -26,6 +27,7 @@ const Skills = ({
   const curtainControls = useAnimation();
   const skillControls = skillsData.map(() => useAnimation());
   const descriptionControls = skillsData.map(() => useAnimation());
+  const { width } = useWindowSize();
 
   useEffect(() => {
     setControls(skillsControls);
@@ -62,7 +64,7 @@ const Skills = ({
       <motion.div
         initial="initial"
         animate="animate"
-        exit="exit"
+        exit={width > 768 ? 'exit' : 'exitMobile'}
         variants={text}
         className="skills__container"
       >

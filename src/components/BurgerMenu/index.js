@@ -19,42 +19,94 @@ const BurgerMenu = ({
   const straightControls = useAnimation();
   const menuControls = useAnimation();
 
-  const handleMenuClick = () => {
+  const openBurgerMenu = async () => {
+    straightControls.start({
+      scale: 0,
+      transition: {
+        duration: 0.3,
+        ease: 'easeInOut',
+      },
+    });
+    crossControls.start({
+      scale: 1,
+      transition: {
+        delay: 0.3,
+        duration: 0.3,
+        ease: 'easeInOut',
+      },
+    });
+    await controls.start({
+      opacity: 0,
+    });
+    controls.start({
+      zIndex: 3,
+    });
+    await controls.start({
+      opacity: 1,
+      transition: {
+        duration: 0.3,
+        ease: 'easeInOut',
+      },
+    });
+    await menuControls.start({
+      opacity: 1,
+      zIndex: 4,
+      transition: {
+        duration: 0.3,
+        ease: 'easeInOut',
+      },
+    });
+    setIsOpen(true);
+  };
+
+  const closeBurgerMenu = async () => {
+    straightControls.start({
+      scale: 1,
+      transition: {
+        delay: 0.3,
+        duration: 0.3,
+        ease: 'easeInOut',
+      },
+    });
+    crossControls.start({
+      scale: 0,
+      transition: {
+        duration: 0.3,
+        ease: 'easeInOut',
+      },
+    });
+    await menuControls.start({
+      opacity: 0,
+      transition: {
+        duration: 0.3,
+        ease: 'easeInOut',
+      },
+    });
+    menuControls.start({
+      zIndex: -13,
+    });
+    await controls.start({
+      opacity: 0,
+      transition: {
+        duration: 0.3,
+        ease: 'easeInOut',
+      },
+    });
+    controls.start({
+      zIndex: -11,
+    });
+    controls.start({
+      opacity: 1,
+    });
+    setIsOpen(false);
+  };
+
+  const handleMenuClick = async () => {
     if (!isOpen) {
-      straightControls.start({
-        scale: 0,
-        transition: {
-          duration: 0.3,
-          ease: 'easeInOut',
-        },
-      });
-      crossControls.start({
-        scale: 1,
-        transition: {
-          delay: 0.3,
-          duration: 0.3,
-          ease: 'easeInOut',
-        },
-      });
-      setIsOpen(true);
+      openBurgerMenu();
     }
     else {
-      straightControls.start({
-        scale: 1,
-        transition: {
-          delay: 0.3,
-          duration: 0.3,
-          ease: 'easeInOut',
-        },
-      });
-      crossControls.start({
-        scale: 0,
-        transition: {
-          duration: 0.3,
-          ease: 'easeInOut',
-        },
-      });
-      setIsOpen(false);
+      closeBurgerMenu();
     }
   };
 
@@ -84,6 +136,8 @@ const BurgerMenu = ({
         },
       });
     }
+    setIsOpen(false);
+    closeBurgerMenu();
     setPageIndex(nextPageIndex);
   };
 
@@ -120,7 +174,13 @@ const BurgerMenu = ({
           />
         </div>
       </div>
-      <motion.nav className="burgerMenu" animate={menuControls}>
+      <motion.nav
+        className="burgerMenu"
+        animate={menuControls}
+        initial={{
+          opacity: 0,
+        }}
+      >
         <motion.ul className="burgerNavbar">
           {categoriesData.map((category, index) => (
             <li key={category.id} className="burgerNavbar__item">

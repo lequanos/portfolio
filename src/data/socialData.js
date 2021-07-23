@@ -1,4 +1,3 @@
-import React from 'react';
 import { SiGithub, SiLinkedin, SiMailDotRu } from 'react-icons/si';
 
 export default [
@@ -6,24 +5,18 @@ export default [
     id: 1,
     url: 'https://github.com/lequanos',
     name: 'GitHub',
-    Component() {
-      return (<SiGithub className="text__icon" size="clamp(45px, 5vw, 90px)" />);
-    },
+    Component: SiGithub,
   },
   {
     id: 2,
     url: 'https://www.linkedin.com/in/quan-tranvanba/',
     name: 'LinkedIn',
-    Component() {
-      return (<SiLinkedin className="text__icon" size="clamp(45px, 5vw, 90px)" />);
-    },
+    Component: SiLinkedin,
   },
   {
     id: 3,
     url: 'mailto:tranvanba.quan@gmail.com',
     name: 'Email',
-    Component() {
-      return (<SiMailDotRu className="text__icon" size="clamp(45px, 5vw, 90px)" />);
-    },
+    Component: SiMailDotRu,
   },
 ];

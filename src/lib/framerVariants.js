@@ -12,6 +12,9 @@ export const text = {
   exit: {
     opacity: 0,
   },
+  exitMobile: {
+    x: 2000,
+  },
 };
 
 export const picture = {
@@ -28,6 +31,9 @@ export const picture = {
   },
   exit: {
     opacity: 0,
+  },
+  exitMobile: {
+    x: 2000,
   },
 };
 

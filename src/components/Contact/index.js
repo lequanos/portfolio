@@ -5,6 +5,7 @@ import { motion, useAnimation } from 'framer-motion';
 
 // == Import
 import { text, background, contactPicture } from 'src/lib/framerVariants';
+import useWindowSize from 'src/lib/useWindowSize';
 import socialData from 'src/data/socialData';
 import SocialCard from './SocialCard';
 import './styles.scss';
@@ -17,6 +18,7 @@ const Contact = ({
   setPageIndex,
 }) => {
   const contactControls = useAnimation();
+  const { width } = useWindowSize();
   const socialControls = socialData.map(() => useAnimation());
   const socialTextControls = socialData.map(() => useAnimation());
 
@@ -49,7 +51,7 @@ const Contact = ({
       <motion.div
         initial="initial"
         animate="animate"
-        exit="exit"
+        exit={width > 768 ? 'exit' : 'exitMobile'}
         variants={text}
         className="contact__container"
       >

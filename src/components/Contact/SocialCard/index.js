@@ -79,7 +79,7 @@ const SocialCard = ({
       onMouseLeave={() => handleMouseLeave(index)}
     >
       <a href={url} target="_blank" rel="noreferrer">
-        {Component()}
+        <Component className="text__icon" size="clamp(45px, 5vw, 90px)" />
       </a>
       <div className="social__name">
         <motion.h3
