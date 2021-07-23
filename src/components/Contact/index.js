@@ -5,7 +5,8 @@ import { motion, useAnimation } from 'framer-motion';
 
 // == Import
 import { text, background, contactPicture } from 'src/lib/framerVariants';
-import socialData from './socialData';
+import socialData from 'src/data/socialData';
+import SocialCard from './SocialCard';
 import './styles.scss';
 
 // == Composant
@@ -18,62 +19,6 @@ const Contact = ({
   const contactControls = useAnimation();
   const socialControls = socialData.map(() => useAnimation());
   const socialTextControls = socialData.map(() => useAnimation());
-
-  const handleMouseEnter = (index) => {
-    socialControls[index].start({
-      color: '#3E3F3F',
-      transition: {
-        duration: 0.3,
-        ease: 'easeIn',
-      },
-    });
-    socialTextControls[index].start({
-      y: 0,
-      color: '#3E3F3F',
-      transition: {
-        duration: 0.3,
-        ease: 'easeIn',
-      },
-    });
-    const otherSocialControls = socialControls.filter((_, indx) => index !== indx);
-    otherSocialControls.forEach((socialControl) => {
-      socialControl.start({
-        opacity: 0.3,
-        transition: {
-          duration: 0.3,
-          ease: 'easeIn',
-        },
-      });
-    });
-  };
-
-  const handleMouseLeave = (index) => {
-    socialControls[index].start({
-      color: '#e4e0d9',
-      transition: {
-        duration: 0.3,
-        ease: 'easeIn',
-      },
-    });
-    socialTextControls[index].start({
-      y: 50,
-      color: '#e4e0d9',
-      transition: {
-        duration: 0.3,
-        ease: 'easeIn',
-      },
-    });
-    const otherSocialControls = socialControls.filter((_, indx) => index !== indx);
-    otherSocialControls.forEach((socialControl) => {
-      socialControl.start({
-        opacity: 1,
-        transition: {
-          duration: 0.3,
-          ease: 'easeIn',
-        },
-      });
-    });
-  };
 
   useEffect(() => {
     setControls(contactControls);
@@ -114,27 +59,13 @@ const Contact = ({
         <div className="contact__content">
           <section className="contact__social">
             {socialData.map((social, index) => (
-              <motion.div
+              <SocialCard
                 key={social.id}
-                className="social__category"
-                animate={socialControls[index]}
-                onMouseEnter={() => handleMouseEnter(index)}
-                onMouseLeave={() => handleMouseLeave(index)}
-              >
-                <a href={social.url} target="_blank" rel="noreferrer">
-                  {social.Component()}
-                </a>
-                <div className="social__name">
-                  <motion.h3
-                    initial={{
-                      y: 50,
-                    }}
-                    animate={socialTextControls[index]}
-                  >
-                    {social.name}
-                  </motion.h3>
-                </div>
-              </motion.div>
+                {...social}
+                index={index}
+                socialControls={socialControls}
+                socialTextControls={socialTextControls}
+              />
             ))}
           </section>
           <motion.section

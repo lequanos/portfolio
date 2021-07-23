@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 // == Import
+import categoriesData from 'src/data/categoriesData';
 import './styles.scss';
 
 // == Composant
@@ -44,66 +45,18 @@ const Menu = ({
   return (
     <nav className="menu">
       <ul className="navbar">
-        <li className="navbar__item">
-          <NavLink
-            exact
-            to="/"
-            activeClassName="active"
-            onClick={(e) => handleClick(e, 0)}
-          >
-            Accueil
-          </NavLink>
-        </li>
-        <li className="navbar__item">
-          <NavLink
-            exact
-            to="/a-propos"
-            activeClassName="active"
-            onClick={(e) => handleClick(e, 1)}
-          >
-            A propos
-          </NavLink>
-        </li>
-        <li className="navbar__item">
-          <NavLink
-            exact
-            to="/experiences"
-            activeClassName="active"
-            onClick={(e) => handleClick(e, 2)}
-          >
-            Expériences
-          </NavLink>
-        </li>
-        <li className="navbar__item">
-          <NavLink
-            exact
-            to="/competences"
-            activeClassName="active"
-            onClick={(e) => handleClick(e, 3)}
-          >
-            Mes compétences
-          </NavLink>
-        </li>
-        <li className="navbar__item">
-          <NavLink
-            exact
-            to="/mes-projets"
-            activeClassName="active"
-            onClick={(e) => handleClick(e, 4)}
-          >
-            Mes projets
-          </NavLink>
-        </li>
-        <li className="navbar__item">
-          <NavLink
-            exact
-            to="/me-contacter"
-            activeClassName="active"
-            onClick={(e) => handleClick(e, 5)}
-          >
-            Me contacter
-          </NavLink>
-        </li>
+        {categoriesData.map((category, index) => (
+          <li key={category.id} className="navbar__item">
+            <NavLink
+              exact
+              to={category.url}
+              activeClassName="active"
+              onClick={(e) => handleClick(e, index)}
+            >
+              {category.label}
+            </NavLink>
+          </li>
+        ))}
       </ul>
     </nav>
   );

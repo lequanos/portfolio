@@ -10,8 +10,8 @@ import {
   skillsCurtain,
   skillCard,
 } from 'src/lib/framerVariants';
-import skillsData from './skillsData';
-
+import skillsData from 'src/data/skillsData';
+import SkillCard from './SkillCard';
 import './styles.scss';
 
 // == Composant
@@ -26,44 +26,6 @@ const Skills = ({
   const curtainControls = useAnimation();
   const skillControls = skillsData.map(() => useAnimation());
   const descriptionControls = skillsData.map(() => useAnimation());
-  const {
-    showCurtain,
-    bringToFrontSkill,
-    showDescription,
-    hideCurtain,
-    bringToBackCurtain,
-    bringToBackSkill,
-    hideDescription,
-  } = skillCard;
-
-  const handleMouseEnter = (index) => {
-    curtainControls.start(showCurtain);
-    skillControls[index].start(bringToFrontSkill);
-    descriptionControls[index].start(showDescription);
-  };
-
-  const handleMouseLeave = (index) => {
-    curtainControls.start(hideCurtain);
-    curtainControls.start(bringToBackCurtain);
-    skillControls[index].start(bringToBackSkill);
-    descriptionControls[index].start(hideDescription);
-  };
-
-  const handleClick = (index) => {
-    if (curtain) {
-      curtainControls.start(hideCurtain);
-      curtainControls.start(bringToBackCurtain);
-      skillControls[index].start(bringToBackSkill);
-      descriptionControls[index].start(hideDescription);
-      setCurtain(false);
-    }
-    else {
-      curtainControls.start(showCurtain);
-      skillControls[index].start(bringToFrontSkill);
-      descriptionControls[index].start(showDescription);
-      setCurtain(true);
-    }
-  };
 
   useEffect(() => {
     setControls(skillsControls);
@@ -111,29 +73,17 @@ const Skills = ({
           className="text__skills"
         >
           {skillsData.map((skill, index) => (
-            <motion.div
+            <SkillCard
               key={skill.id}
-              className="text__skill"
-              animate={skillControls[index]}
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={() => handleMouseLeave(index)}
-              onClick={() => handleClick(index)}
-              variants={skillCard}
-            >
-              <img className="text__logo" src={skill.url} alt={skill.alt} />
-              <div className="description__container">
-                <motion.p
-                  className="text__description"
-                  initial={{
-                    overflow: 'hidden',
-                    y: '-50px',
-                  }}
-                  animate={descriptionControls[index]}
-                >
-                  {skill.description}
-                </motion.p>
-              </div>
-            </motion.div>
+              {...skill}
+              index={index}
+              skillCard={skillCard}
+              curtainControls={curtainControls}
+              skillControls={skillControls}
+              descriptionControls={descriptionControls}
+              curtain={curtain}
+              setCurtain={setCurtain}
+            />
           ))}
         </motion.div>
       </motion.div>

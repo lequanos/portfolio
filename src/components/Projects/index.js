@@ -10,8 +10,8 @@ import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 // == Import
 import { text, background } from 'src/lib/framerVariants';
 import useWindowSize from 'src/lib/useWindowSize';
+import projectsData from 'src/data/projectsData';
 import Project from './Project';
-import projectsData from './projectsData';
 import './styles.scss';
 
 // == Composant

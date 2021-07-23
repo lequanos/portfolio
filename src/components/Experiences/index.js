@@ -4,21 +4,14 @@ import PropTypes from 'prop-types';
 import { motion, useAnimation } from 'framer-motion';
 
 // Import Material UI
-import {
-  Timeline,
-  TimelineItem,
-  TimelineSeparator,
-  TimelineConnector,
-  TimelineContent,
-  TimelineDot,
-  TimelineOppositeContent,
-} from '@material-ui/lab';
+import { Timeline } from '@material-ui/lab';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 
 // == Import
 import { text, background } from 'src/lib/framerVariants';
-import useWindowSize from '../../lib/useWindowSize';
-import timelineData from './timelineData.json';
+import timelineData from 'src/data/timelineData';
+import useWindowSize from 'src/lib/useWindowSize';
+import TimelineEvent from './TimelineEvent';
 import './styles.scss';
 
 // == Composant
@@ -111,73 +104,12 @@ const Experiences = ({
         <ThemeProvider theme={theme}>
           <div className="timeline">
             <Timeline align={width > 600 ? 'right' : 'left'}>
-              {timelineData.map((element) => (
-                <TimelineItem key={element.id}>
-                  {width > 600
-                    && (
-                      <TimelineOppositeContent className="card">
-                        <div className="card__header">
-                          <h5 className="card__title">
-                            {element.title}
-                          </h5>
-                          <h6 className="card__subtitle">
-                            {element.subtitle}
-                            {element.link
-                              && (
-                                <> | <a href={element.link} target="_blank" rel="noreferrer">{element.link}</a></>
-                              )}
-                          </h6>
-                        </div>
-                        <br />
-                        <ul className="card__content">
-                          {element.tasks.map((task) => (
-                            <li key={task}>
-                              {task}
-                            </li>
-                          ))}
-                        </ul>
-                        <br />
-                        <br />
-                      </TimelineOppositeContent>
-                    )}
-                  <TimelineSeparator>
-                    <TimelineDot variant="outlined" />
-                    <TimelineConnector />
-                  </TimelineSeparator>
-                  <TimelineContent>
-                    {width > 600
-                      ? element.date
-                      : (
-                        <div className="card">
-                          {element.date}
-                          <br />
-                          <br />
-                          <div className="card__header">
-                            <h5 className="card__title">
-                              {element.title}
-                            </h5>
-                            <h6 className="card__subtitle">
-                              {element.subtitle}
-                              {element.link
-                                && (
-                                  <> | <a href={element.link} target="_blank" rel="noreferrer">{element.link}</a></>
-                                )}
-                            </h6>
-                          </div>
-                          <br />
-                          <ul className="card__content">
-                            {element.tasks.map((task) => (
-                              <li key={task}>
-                                {task}
-                              </li>
-                            ))}
-                          </ul>
-                          <br />
-                          <br />
-                        </div>
-                      )}
-                  </TimelineContent>
-                </TimelineItem>
+              {timelineData.map((event) => (
+                <TimelineEvent
+                  key={event.id}
+                  {...event}
+                  width={width}
+                />
               ))}
             </Timeline>
           </div>

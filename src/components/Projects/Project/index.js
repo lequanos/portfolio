@@ -7,7 +7,7 @@ import { motion, useAnimation } from 'framer-motion';
 import xMark from 'src/assets/projects/x-mark.svg';
 import plus from 'src/assets/projects/plus.svg';
 import usePrevious from 'src/lib/usePrevious';
-import './styles.scss';
+import '../styles.scss';
 
 // == Composant
 const Project = ({
