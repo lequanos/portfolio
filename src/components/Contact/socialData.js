@@ -7,7 +7,7 @@ export default [
     url: 'https://github.com/lequanos',
     name: 'GitHub',
     Component() {
-      return (<SiGithub className="text__icon" size={90} />);
+      return (<SiGithub className="text__icon" size="clamp(45px, 5vw, 90px)" />);
     },
   },
   {
@@ -15,7 +15,7 @@ export default [
     url: 'https://www.linkedin.com/in/quan-tranvanba/',
     name: 'LinkedIn',
     Component() {
-      return (<SiLinkedin className="text__icon" size={90} />);
+      return (<SiLinkedin className="text__icon" size="clamp(45px, 5vw, 90px)" />);
     },
   },
   {
@@ -23,7 +23,7 @@ export default [
     url: 'mailto:tranvanba.quan@gmail.com',
     name: 'Email',
     Component() {
-      return (<SiMailDotRu className="text__icon" size={90} />);
+      return (<SiMailDotRu className="text__icon" size="clamp(45px, 5vw, 90px)" />);
     },
   },
 ];

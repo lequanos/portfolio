@@ -124,14 +124,16 @@ const Contact = ({
                 <a href={social.url} target="_blank" rel="noreferrer">
                   {social.Component()}
                 </a>
-                <motion.h3
-                  initial={{
-                    y: 50,
-                  }}
-                  animate={socialTextControls[index]}
-                >
-                  {social.name}
-                </motion.h3>
+                <div className="social__name">
+                  <motion.h3
+                    initial={{
+                      y: 50,
+                    }}
+                    animate={socialTextControls[index]}
+                  >
+                    {social.name}
+                  </motion.h3>
+                </div>
               </motion.div>
             ))}
           </section>

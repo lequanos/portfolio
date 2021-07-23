@@ -39,6 +39,7 @@
         display: flex;
         justify-content: space-evenly;
         width: 30%;
+        min-width: 300px;
         color: #e4e0d9;
 
         .social__category {
@@ -46,17 +47,19 @@
           display: flex;
           flex-direction: column;
           align-items: center;
-          justify-content: space-between;
-          height: 145px;
           font-family: 'Roboto Slab', serif;
-          overflow: hidden;
+
+          .social__name {
+            margin-top: 1rem;
+            overflow: hidden;
+          }
         }
       }
 
       .contact__picture {
         width: 20%;
-        min-width: 150px;
-        max-width: 450px;
+        min-width: 250px;
+        max-width: 400px;
         border-radius: 50%;
         background: url(../../assets/IMG_20180501_112141.jpg);
         background-size: cover;
