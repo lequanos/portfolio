@@ -1,9 +1,11 @@
+@use 'src/styles/vars';
+
 .contactContainer {
   background-color: transparent;
   min-width: 100vw;
 
   .contact__background {
-    background-color: #E99072;
+    background-color: vars.$contactBackground;
     height: 320vh;
     min-height: 1800px;
     width: 320vw;
@@ -17,13 +19,13 @@
   
   .contact__container {
     margin-top: calc(80px + 4rem);
-    color: #e4e0d9;
+    color: vars.$primary-color;
     background-color: transparent;
 
     .text__large {
       font-size: clamp(40px, 6vw, 95px);
       font-weight: 700;
-      -webkit-text-stroke: 1px #e4e0d9;
+      -webkit-text-stroke: 1px vars.$primary-color;
       color: transparent;
       text-align: center;
     }
@@ -35,12 +37,12 @@
       align-items: center;
 
       .contact__social {
-        margin: 4rem auto;
+        margin: (vars.$gutter * 2) auto;
         display: flex;
         justify-content: space-evenly;
         width: 30%;
         min-width: 300px;
-        color: #e4e0d9;
+        color: vars.$primary-color;
 
         .social__category {
           font-size: clamp(16px, 2vw, 32px);
@@ -50,7 +52,7 @@
           font-family: 'Roboto Slab', serif;
 
           .social__name {
-            margin-top: 1rem;
+            margin-top: vars.$gutter / 2;
             overflow: hidden;
           }
         }

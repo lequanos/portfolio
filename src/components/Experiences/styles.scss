@@ -1,8 +1,10 @@
+@use 'src/styles/vars';
+
 .experiencesContainer {
   background-color: transparent;
 
   .experiences__background {
-    background-color: #877DA3;
+    background-color: vars.$experiencesBackground;
     height: 320vh;
     min-height: 1800px;
     width: 320vw;
@@ -16,7 +18,7 @@
 
   .experiences__text {
     margin: calc(80px + 4rem) 0;
-    color: #e4e0d9;
+    color: vars.$primary-color;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,13 +28,13 @@
     .text__large {
       font-size: clamp(40px, 6vw, 95px);
       font-weight: 700;
-      -webkit-text-stroke: 1px #e4e0d9;
+      -webkit-text-stroke: 1px vars.$primary-color;
       color: transparent;
       text-align: center;
     }
 
     .timeline {
-      margin-top: 4rem;
+      margin-top: vars.$gutter * 2;
       width: 80%;
       color: #000;
       line-height: 1.5;

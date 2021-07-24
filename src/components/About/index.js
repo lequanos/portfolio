@@ -63,13 +63,36 @@ const About = ({
             À propos de moi
           </h2>
           <p className="text__small">
-            Fier papa d'un petit garçon, j'ai officié pendant près de 15 ans dans le domaine
-            de la restauration, dont les 8 dernières en tant que directeur de restaurant.
+            Fier papa d’un petit garçon, ma carrière professionnelle n’a été ponctué que par un seul
+            domaine : la restauration qui, à l’instar du développement web, est un métier ô combien
+            passionnant et chronophage.
             <br />
             <br />
-            Suite à la crise de la Covid, j'ai suivi une formation avec <a href="https://oclock.io" target="_blank" rel="noreferrer">l'école O'Clock </a>
-            afin d'opérer une reconversion professionnelle dans un domaine qui
-            m'a toujours tenu à coeur, le développement web.
+            Ma carrière a débuté en 2006 en tant que plongeur et commis
+            de cuisine. Les années passant, j’ai suivi un cursus BTS gestion de PME-PMI en
+            alternance afin de pouvoir prétendre à plus de responsabilités au sein de l’entreprise.
+            <br />
+            <br />
+            C’est ainsi qu’en 2011, nous avons commencé à travailler sur l’ouverture d’un nouveau
+            point de vente de 700m², ouverture qui s’est effectuée en 2012 et dont j’ai été le
+            directeur jusqu’en 2020.
+            <br />
+            <br />
+            Grâce à ce poste, j’ai été amené à diriger une équipe de près
+            de 30 collaborateurs, parfois hétéroclites. Cela m’a permis d’apprendre à gérer tous
+            types de problématiques, aussi bien financières (objectifs à atteindre pour la
+            rentabilité, relationnel fournisseur…), qu’administratives (dossier à constituer pour
+            les demandes d’aménagement, dossiers de litige) ou humaines (gestion de conflits entre
+            collaborateurs ou avec un client…).
+            <br />
+            <br />
+            Adepte d’un management bienveillant, être à l’écoute des autres et de leurs difficultés
+            m’a également permis d’en apprendre plus sur moi-même.
+            <br />
+            <br />
+            C’est pourquoi en novembre 2020, j’ai décidé d’opérer une reconversion professionnelle,
+            grâce à <a href="https://oclock.io" className="text__link" target="_blank" rel="noreferrer">l'école O'Clock</a>, dans un domaine qui m'a toujours tenu à cœur,
+            le développement web.
             <br />
             <br />
             Cette formation m'a notamment permis d'acquérir de solides compétences en Javascript,

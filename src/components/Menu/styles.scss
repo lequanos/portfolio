@@ -1,3 +1,5 @@
+@use 'src/styles/vars';
+
 .menu {
   display: flex;
   justify-content: flex-end;
@@ -13,15 +15,16 @@
     margin-top: 1rem;
     justify-content: space-between;
     text-transform: uppercase;
+    color: vars.$secondary-color;
 
     &__item {
       font-size: clamp(12px, 1.3vw, 16px);
       font-weight: 100;
 
       a {
-        padding: 0.5rem 0;
-        margin: 0 1rem;
-        background-image: linear-gradient(#000, #000);
+        padding: (vars.$gutter / 4) 0;
+        margin: 0 (vars.$gutter / 2);
+        background-image: linear-gradient(vars.$secondary-color, vars.$secondary-color);
         background-size: 0% 0.1em;
         background-position-x: 100%;
         background-position-y: 100%;

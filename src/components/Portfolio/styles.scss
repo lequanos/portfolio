@@ -1,3 +1,5 @@
+@use 'src/styles/vars';
+
 .home {
   width: 100vw;
   height: 100vh;
@@ -6,27 +8,27 @@
   overflow-y: auto;
   overflow-x: hidden;
   position: absolute;
-  background-color: #E4E0D9;
+  background-color: vars.$homeBackground;
   z-index: -14;
 
   &--about {
-    background-color: #4F6492;
+    background-color: vars.$aboutBackground;
   }
 
   &--experiences {
-    background-color: #877DA3;
+    background-color: vars.$experiencesBackground;
   }
 
   &--skills {
-    background-color: #5E827D;
+    background-color: vars.$skillsBackground;
   }
 
   &--projects {
-    background-color: #8CA0CF;
+    background-color: vars.$projectsBackground;
   }
 
   &--contact {
-    background-color: #E99072;
+    background-color: vars.$contactBackground;
   }
 
 }

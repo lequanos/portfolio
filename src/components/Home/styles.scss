@@ -1,8 +1,10 @@
+@use 'src/styles/vars';
+
 .homeContainer {
   min-width: 100vw;
 
   .home__background {
-    background-color: #E4E0D9;
+    background-color: vars.$homeBackground;
     height: 320vh;
     min-height: 1800px;
     width: 320vw;
@@ -16,8 +18,8 @@
   
   .home__text {
     height: fit-content;
-    padding: 8rem 5rem;
-    color: #3E3F3F;
+    padding: (vars.$gutter * 4) (vars.$gutter * 2);
+    color: vars.$secondary-color;
     height: 100vh;
     max-height: 100vh;
     display: flex;
@@ -29,24 +31,24 @@
   
     .text__small {
       font-size: clamp(16px, 2vw, 32px);
-      margin-top: 0.5rem;
+      margin-top: vars.$gutter / 4;
       font-weight: 100;
       text-align: center;
     } 
   
     .text__large {
       font-size: clamp(40px, 6vw, 120px);
-      font-family: 'Roboto Slab', serif;
+      font-family: vars.$secondary-font;
       font-weight: 400;
-      margin: 1rem 0;
+      margin: (vars.$gutter / 2) 0;
       text-align: center;
       
       &--React {
         font-size: clamp(40px, 6vw, 95px);
         font-weight: 700;
-        margin: 1rem 0;
+        margin: (vars.$gutter / 2) 0;
         text-align: center;
-        -webkit-text-stroke: 1px #000;
+        -webkit-text-stroke: 1px vars.$secondary-color;
         color: transparent;
         animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
       }
@@ -54,9 +56,9 @@
       &--NodeJS {
         font-size: clamp(40px, 6vw, 95px);
         font-weight: 900;
-        margin: 1rem 0;
+        margin: (vars.$gutter / 2) 0;
         text-align: center;
-        -webkit-text-stroke: 1px #000;
+        -webkit-text-stroke: 1px vars.$secondary-color;
         color: transparent;
         animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
       }
@@ -64,9 +66,9 @@
       &--NextJS {
         font-size: clamp(40px, 6vw, 95px);
         font-weight: 900;
-        margin: 1rem 0;
+        margin: (vars.$gutter / 2) 0;
         text-align: center;
-        -webkit-text-stroke: 1px #000;
+        -webkit-text-stroke: 1px vars.$secondary-color;
         color: transparent;
         animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
       }
@@ -76,7 +78,7 @@
   
     .text__medium {
       font-size: clamp(30px, 3vw, 64px);
-      margin: 0.5rem 0 1rem;
+      margin: (vars.$gutter / 4) 0 (vars.$gutter / 2);
       font-weight: 200;
       text-align: center;
     }
@@ -85,15 +87,15 @@
       position: fixed;
       bottom: 0;
       left: 0;
-      padding: 2rem;
+      padding: vars.$gutter;
   
       .text__icon {
-        margin-right: 2rem;
+        margin-right: vars.$gutter;
         height: fit-content;
         cursor: pointer;
     
         &:hover {
-          color: #5F758E;
+          color: vars.$third-color;
         }
       }
     }

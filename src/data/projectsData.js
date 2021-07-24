@@ -9,9 +9,9 @@ export default [
     title: 'Diamond Dreams',
     subtitle: "Création d'un site d'E-commerce de bijoux",
     context: "Projet de fin d'études formation Fullstack JS - École O'Clock",
-    link: '',
+    link: 'https://www.youtube.com/watch?v=XliSnSJouJs#t=1h23m0s',
     tasks: [
-      "Développement d'une API REST sur NodeJS/Express",
+      "Développement d'une API sur NodeJS/Express",
       "Développement d'une API GraphQL avec Apollo Server",
       "Création d'une base de données PostgresQL",
       'Versionnement de la base de données avec Sqitch',

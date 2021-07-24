@@ -1,8 +1,10 @@
+@use 'src/styles/vars';
+
 .skillsContainer {
   background-color: transparent;
 
   .skills__background {
-    background-color: #5E827D;
+    background-color: vars.$skillsBackground;
     height: 320vh;
     min-height: 1800px;
     width: 320vw;
@@ -15,7 +17,7 @@
   }
 
   .skills__curtain {
-    background-color: #5E827D;
+    background-color: vars.$skillsBackground;
     height: 100vh;
     width: 100vw;
     position: fixed;
@@ -25,7 +27,7 @@
   
   .skills__container {
     margin-top: calc(80px + 4rem);
-    color: #e4e0d9;
+    color: vars.$primary-color;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,14 +36,14 @@
   
     .text__medium {
       font-size: clamp(12px, 3.5vw, 17px);
-      margin-top: 4rem;
+      margin-top: vars.$gutter * 2;
       font-weight: 100;
     } 
   
     .text__large {
       font-size: clamp(40px, 6vw, 95px);
       font-weight: 700;
-      -webkit-text-stroke: 1px #e4e0d9;
+      -webkit-text-stroke: 1px vars.$primary-color;
       color: transparent;
       text-align: center;
       z-index: 2;
@@ -53,7 +55,7 @@
       justify-content: space-evenly;
 
       .text__skill {
-        margin: 4rem 3rem;
+        margin: (vars.$gutter * 2) (vars.$gutter * 1.5);
         text-align: center;
         background-color: transparent;
       }
@@ -70,10 +72,10 @@
         overflow: hidden;
 
         .text__description {
-          color: #e4e0d9;
+          color: vars.$primary-color;
           margin-top: 0.5rem;
           font-size: clamp(12px, 3.5vw, 21px);
-          font-family: 'Roboto Slab', serif;
+          font-family: vars.$secondary-font;
           font-weight: 200;
         }
       }
@@ -88,10 +90,10 @@
     .skills__container {
 
         .text__skills {
-          margin-top: 4rem;
+          margin-top: vars.$gutter * 2;
   
           .text__skill {
-            margin: 2rem;
+            margin: vars.$gutter;
           }
         }
     }
