@@ -112,7 +112,7 @@ const Projects = ({
     if (xValue > xTouchValue) {
       setSliderValue((prevValue) => {
         if (prevValue < 100) {
-          return prevValue + 1;
+          return prevValue + 10;
         }
         return prevValue;
       });
@@ -120,7 +120,7 @@ const Projects = ({
     else if (xValue < xTouchValue) {
       setSliderValue((prevValue) => {
         if (prevValue > 0) {
-          return prevValue - 1;
+          return prevValue - 10;
         }
         return prevValue;
       });
