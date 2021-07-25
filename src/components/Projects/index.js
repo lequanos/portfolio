@@ -30,6 +30,7 @@ const Projects = ({
   const [grabbing, setGrabbing] = useState(false);
   const [projectIndex, setProjectIndex] = useState(null);
   const [xValue, setXValue] = useState();
+  const [yValue, setYValue] = useState();
   const [valueToScroll, setValueToScroll] = useState(0);
   const picturesRef = useRef();
 
@@ -59,7 +60,7 @@ const Projects = ({
   const handleWheel = (e) => {
     if (e.deltaY > 0 || e.deltaX > 0) {
       setSliderValue((prevValue) => {
-        if (prevValue < 100) {
+        if (prevValue < projectsData.length * 33) {
           return prevValue + 4;
         }
         return prevValue;
@@ -78,7 +79,7 @@ const Projects = ({
   const handleKeyDown = (e) => {
     if (e.code === 'ArrowRight' || e.code === 'ArrowDown') {
       setSliderValue((prevValue) => {
-        if (prevValue < 100) {
+        if (prevValue < projectsData.length * 33) {
           return prevValue + 4;
         }
         return prevValue;
@@ -105,19 +106,24 @@ const Projects = ({
   const handleOnTouchStart = (e) => {
     const xTouchValue = e.touches[0].clientX;
     setXValue(xTouchValue);
+    const yTouchValue = e.touches[0].clientY;
+    setYValue(yTouchValue);
   };
 
   const handleOnTouchMove = (e) => {
     const xTouchValue = e.touches[0].clientX;
-    if (xValue > xTouchValue) {
+    const yTouchValue = e.touches[0].clientY;
+    if (xValue > xTouchValue
+      && ((xValue - xTouchValue) ** 2 > (yValue - yTouchValue) ** 2)) {
       setSliderValue((prevValue) => {
-        if (prevValue < 100) {
+        if (prevValue < projectsData.length * 33) {
           return prevValue + 5;
         }
         return prevValue;
       });
     }
-    else if (xValue < xTouchValue) {
+    else if (xValue < xTouchValue
+      && ((xValue - xTouchValue) ** 2 > (yValue - yTouchValue) ** 2)) {
       setSliderValue((prevValue) => {
         if (prevValue > 0) {
           return prevValue - 5;
@@ -140,7 +146,7 @@ const Projects = ({
     if (grabbing) {
       if (e.movementX < 0) {
         setSliderValue((prevValue) => {
-          if (prevValue < 100) {
+          if (prevValue < projectsData.length * 33) {
             return prevValue + 4;
           }
           return prevValue;
