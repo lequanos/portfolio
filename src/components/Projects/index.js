@@ -190,8 +190,9 @@ const Projects = ({
   }, []);
 
   useEffect(() => {
+    const remValue = parseFloat(getComputedStyle(document.documentElement).fontSize);
     picturesControls.start({
-      translateX: `-${sliderValue * ((valueToScroll + 64) / 100)}px`,
+      translateX: `-${(sliderValue / 133 * 100) * ((valueToScroll + (4 * remValue)) / 100)}px`,
       transition: {
         duration: 0.5,
         ease: 'easeOut',
