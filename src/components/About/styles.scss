@@ -37,14 +37,14 @@
   }
   
   .about__text {
+    height: 100vh;
     padding: (vars.$gutter * 4) (vars.$gutter * 2);
     width: 80%;
     max-width: 1200px;
     min-width: 300px;
     color: vars.$primary-color;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: flex-start;
     line-height: 1.5;
     margin-left: 20%;
     background-color: transparent;
@@ -62,7 +62,6 @@
     } 
   
     .text__large {
-      margin: vars.$gutter (vars.$gutter / 2);
       font-size: clamp(40px, 6vw, 95px);
       font-weight: 700;
       -webkit-text-stroke: 1px vars.$primary-color;

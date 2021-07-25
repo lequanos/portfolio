@@ -101,6 +101,7 @@
   width: 100vw;
   height: 100vh;
   color: vars.$secondary-color;
+  overflow-y: scroll;
 
   .burgerNavbar {
     display: flex;

@@ -1,5 +1,5 @@
 // == Import npm
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { motion, useAnimation } from 'framer-motion';
@@ -14,17 +14,7 @@ const Menu = ({
   pageIndex,
   controls,
 }) => {
-  // const [cn, setCn] = useState('menu');
   const navControls = useAnimation();
-
-  // const cnMap = [
-  //   'menu',
-  //   'menu menu--about',
-  //   'menu menu--experiences',
-  //   'menu menu--skills',
-  //   'menu menu--projects',
-  //   'menu menu--contact',
-  // ];
 
   const bgColorMap = [
     '#E4E0D9',
@@ -52,9 +42,6 @@ const Menu = ({
   }, [pageIndex]);
 
   const handleClick = async (e, nextPageIndex) => {
-    // navControls.start({
-    //   backgroundColor: '#00000000',
-    // });
     if (nextPageIndex > pageIndex) {
       controls.start({
         x: -2000,
@@ -65,13 +52,6 @@ const Menu = ({
           ease: 'easeIn',
         },
       });
-      // navControls.start({
-      //   backgroundColor: bgColorMap[nextPageIndex],
-      //   transition: {
-      //     delay: 1,
-      //     duration: 0,
-      //   },
-      // });
     }
     else if (nextPageIndex === pageIndex) {
       e.preventDefault();
@@ -86,16 +66,8 @@ const Menu = ({
           ease: 'easeIn',
         },
       });
-      // navControls.start({
-      //   backgroundColor: bgColorMap[nextPageIndex],
-      //   transition: {
-      //     delay: 1,
-      //     duration: 0,
-      //   },
-      // });
     }
     setPageIndex(nextPageIndex);
-    // setCn(cnMap[nextPageIndex]);
   };
 
   return (

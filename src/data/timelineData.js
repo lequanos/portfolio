@@ -13,6 +13,7 @@ export default [
       'Utilisation de Material UI',
       'Authentification avec JWT',
       'Déploiement sur un VPS OVH',
+      "Accès à l'application via un reverse-proxy Nginx",
       'Intégration de Google Analytics',
     ],
   },

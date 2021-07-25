@@ -55,7 +55,7 @@
       justify-content: space-evenly;
 
       .text__skill {
-        margin: (vars.$gutter * 2) (vars.$gutter * 1.5);
+        margin: (vars.$gutter * 2) (vars.$gutter * 1.5) vars.$gutter;
         text-align: center;
         background-color: transparent;
       }

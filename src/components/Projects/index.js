@@ -193,7 +193,7 @@ const Projects = ({
     });
     pictureControls.forEach((picControls) => {
       picControls.start({
-        backgroundPosition: `${-400 - (sliderValue)}px`,
+        backgroundPosition: `${-(picturesRef.current.clientHeight * 51.6 / 100) - (sliderValue)}px`,
         transition: {
           duration: 0.5,
           ease: 'easeOut',
@@ -253,7 +253,7 @@ const Projects = ({
           </motion.div>
           <ThemeProvider theme={theme}>
             <div className="content__slider">
-              <Slider value={sliderValue} />
+              <Slider value={sliderValue} max={projectsData.length * 33} />
             </div>
           </ThemeProvider>
         </div>
