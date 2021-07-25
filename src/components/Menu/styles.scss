@@ -3,11 +3,32 @@
 .menu {
   display: flex;
   justify-content: flex-end;
-  background-color: transparent;
+  background-color: #00000000;
   position: fixed;
   top: 0;
   right: 0;
   z-index: 9;
+  width: 100vw;
+
+  &--about {
+    background-color: vars.$aboutBackground;
+  }
+
+  &--experiences {
+    background-color: vars.$experiencesBackground;
+  }
+
+  &--skills {
+    background-color: vars.$skillsBackground;
+  }
+
+  &--projects {
+    background-color: vars.$projectsBackground;
+  }
+
+  &--contact {
+    background-color: vars.$contactBackground;
+  }
 
   .navbar {
     display: flex;

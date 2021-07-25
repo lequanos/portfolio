@@ -1,5 +1,5 @@
 // == Import npm
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
@@ -16,6 +16,7 @@ const Portfolio = () => {
   const [cn, setCn] = useState('home');
   const [pageIndex, setPageIndex] = useState(0);
   const [controls, setControls] = useState();
+  const homeRef = useRef();
   const { width } = useWindowSize();
 
   const cnMap = [
@@ -29,10 +30,11 @@ const Portfolio = () => {
 
   useEffect(() => {
     setCn(cnMap[pageIndex]);
+    homeRef.current.scroll(0, 0);
   }, [pageIndex]);
 
   return (
-    <div className={cn}>
+    <div className={cn} ref={homeRef}>
       {width > 768
         ? (
           <Menu

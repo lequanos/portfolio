@@ -63,8 +63,9 @@ const About = ({
             À propos de moi
           </h2>
           <p className="text__small">
-            Fier papa d’un petit garçon, ma carrière professionnelle n’a été ponctué que par un seul
-            domaine : la restauration qui, à l’instar du développement web, est un métier ô combien
+            Fier papa d’un petit garçon, ma carrière professionnelle n’a été ponctué,
+            jusqu'à présent, seulement par un domaine :
+            la restauration qui, à l’instar du développement web, est un métier ô combien
             passionnant et chronophage.
             <br />
             <br />

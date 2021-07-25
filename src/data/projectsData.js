@@ -1,6 +1,7 @@
 import diamondDreams from 'src/assets/projects/diamond-dreams.jpg';
 import menuYojisu from 'src/assets/projects/menu-yojisu.jpg';
 import portfolio from 'src/assets/projects/portfolio.jpg';
+import coachingCanopy from 'src/assets/projects/coaching-canopy.jpg';
 
 export default [
   {
@@ -27,7 +28,7 @@ export default [
     title: 'Restaurant Yojisu',
     subtitle: "Création d'un menu consultatif mobile-first",
     context: 'Projet professionel',
-    link: 'http://menu.yoji.fr',
+    link: 'https://menu.yoji.fr',
     tasks: [
       "Développement d'une API REST sur NodeJS/Express",
       "Création et gestion d'une base de données PostgresQL",
@@ -36,6 +37,7 @@ export default [
       'Utilisation de Material UI',
       'Authentification avec JWT',
       'Déploiement sur un VPS OVH',
+      "Accès à l'application via un reverse-proxy Nginx",
       'Intégration de Google Analytics',
     ],
   },
@@ -43,13 +45,26 @@ export default [
     id: 3,
     url: portfolio,
     title: 'Portfolio',
-    subtitle: 'Création de mon portfolio',
+    subtitle: 'Réalisation de mon portfolio',
     context: 'Projet personnel',
-    link: 'http://www.buri.fr',
+    link: 'https://www.buri.fr',
     tasks: [
       'Développement du côté client avec React',
       'Utilisation de la librairie framer-motion',
       'Utilisation de Material UI',
+      "Accès à l'application via un reverse-proxy Nginx",
+    ],
+  },
+  {
+    id: 4,
+    url: coachingCanopy,
+    title: 'Coaching Canopy',
+    subtitle: "Réalisation d'un site vitrine pour un coach professionnel spécialisé en Neurosciences",
+    context: 'Projet professionnel',
+    link: 'http://www.coachingcanopy.fr',
+    tasks: [
+      'Intégration HTML/CSS',
+      'Animations en JS vanilla',
     ],
   },
 ];
