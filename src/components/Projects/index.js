@@ -30,7 +30,8 @@ const Projects = ({
   const [grabbing, setGrabbing] = useState(false);
   const [projectIndex, setProjectIndex] = useState(null);
   const [xValue, setXValue] = useState();
-  const [yValue, setYValue] = useState();
+  const [startXValue, setStartXValue] = useState();
+  const [startYValue, setStartYValue] = useState();
   const [valueToScroll, setValueToScroll] = useState(0);
   const picturesRef = useRef();
 
@@ -88,8 +89,9 @@ const Projects = ({
   const handleOnTouchStart = (e) => {
     const xTouchValue = e.touches[0].clientX;
     setXValue(xTouchValue);
+    setStartXValue(xTouchValue);
     const yTouchValue = e.touches[0].clientY;
-    setYValue(yTouchValue);
+    setStartYValue(yTouchValue);
   };
 
   const handleOnTouchMove = (e) => {
@@ -97,22 +99,13 @@ const Projects = ({
     const yTouchValue = e.touches[0].clientY;
     const deltaX = xValue > xTouchValue ? xValue - xTouchValue : xTouchValue - xValue;
     if (xValue > xTouchValue
-      && ((xValue - xTouchValue) ** 2 > (yValue - yTouchValue) ** 2)) {
-      setSliderValue((prevValue) => {
-        if (prevValue < projectsData.length * 33) {
-          return prevValue + deltaX;
-        }
-        return prevValue;
-      });
+      && ((startXValue - xTouchValue) ** 2 > (startYValue - yTouchValue) ** 2)) {
+      setSliderValue((prevValue) => (prevValue + deltaX < projectsData.length * 33
+        ? prevValue + deltaX : projectsData.length * 33));
     }
     else if (xValue < xTouchValue
-      && ((xValue - xTouchValue) ** 2 > (yValue - yTouchValue) ** 2)) {
-      setSliderValue((prevValue) => {
-        if (prevValue > 0) {
-          return prevValue - deltaX;
-        }
-        return prevValue;
-      });
+      && ((startXValue - xTouchValue) ** 2 > (startYValue - yTouchValue) ** 2)) {
+      setSliderValue((prevValue) => (prevValue - deltaX > 0 ? prevValue - deltaX : 0));
     }
     setXValue(xTouchValue);
   };
