@@ -25,7 +25,7 @@ const Projects = ({
   const pictureControls = projectsData.map(() => useAnimation());
   const picturesControls = useAnimation();
   const titlesControls = projectsData.map(() => useAnimation());
-  const { width } = useWindowSize();
+  const { width, height } = useWindowSize();
   const [sliderValue, setSliderValue] = useState(0);
   const [grabbing, setGrabbing] = useState(false);
   const [projectIndex, setProjectIndex] = useState(null);
@@ -59,39 +59,21 @@ const Projects = ({
 
   const handleWheel = (e) => {
     if (e.deltaY > 0 || e.deltaX > 0) {
-      setSliderValue((prevValue) => {
-        if (prevValue < projectsData.length * 33) {
-          return prevValue + 4;
-        }
-        return prevValue;
-      });
+      setSliderValue((prevValue) => (prevValue + 4 < projectsData.length * 33
+        ? prevValue + 4 : projectsData.length * 33));
     }
     else if (e.deltaY < 0 || e.deltaX < 0) {
-      setSliderValue((prevValue) => {
-        if (prevValue > 0) {
-          return prevValue - 4;
-        }
-        return prevValue;
-      });
+      setSliderValue((prevValue) => (prevValue - 4 > 0 ? prevValue - 4 : 0));
     }
   };
 
   const handleKeyDown = (e) => {
     if (e.code === 'ArrowRight' || e.code === 'ArrowDown') {
-      setSliderValue((prevValue) => {
-        if (prevValue < projectsData.length * 33) {
-          return prevValue + 4;
-        }
-        return prevValue;
-      });
+      setSliderValue((prevValue) => (prevValue + 4 < projectsData.length * 33
+        ? prevValue + 4 : projectsData.length * 33));
     }
     else if (e.code === 'ArrowLeft' || e.code === 'ArrowUp') {
-      setSliderValue((prevValue) => {
-        if (prevValue > 0) {
-          return prevValue - 4;
-        }
-        return prevValue;
-      });
+      setSliderValue((prevValue) => (prevValue - 4 > 0 ? prevValue - 4 : 0));
     }
   };
 
@@ -113,11 +95,12 @@ const Projects = ({
   const handleOnTouchMove = (e) => {
     const xTouchValue = e.touches[0].clientX;
     const yTouchValue = e.touches[0].clientY;
+    const deltaX = xValue > xTouchValue ? xValue - xTouchValue : xTouchValue - xValue;
     if (xValue > xTouchValue
       && ((xValue - xTouchValue) ** 2 > (yValue - yTouchValue) ** 2)) {
       setSliderValue((prevValue) => {
         if (prevValue < projectsData.length * 33) {
-          return prevValue + 5;
+          return prevValue + deltaX;
         }
         return prevValue;
       });
@@ -126,11 +109,12 @@ const Projects = ({
       && ((xValue - xTouchValue) ** 2 > (yValue - yTouchValue) ** 2)) {
       setSliderValue((prevValue) => {
         if (prevValue > 0) {
-          return prevValue - 5;
+          return prevValue - deltaX;
         }
         return prevValue;
       });
     }
+    setXValue(xTouchValue);
   };
 
   const handleOnMouseUp = (e) => {
@@ -191,6 +175,15 @@ const Projects = ({
 
   useEffect(() => {
     const remValue = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    const clientHeight = picturesRef.current.clientHeight > 147
+      ? picturesRef.current.clientHeight : 147;
+    const pictureWidth = (picturesRef.current.clientWidth / projectsData.length) - (2 * remValue);
+    const pictureBgPositionValue = clientHeight >= pictureWidth
+      ? -(clientHeight * 51.6 / 100) : Math.floor(
+        ((1904 * clientHeight / 937) - pictureWidth) / -2,
+      );
+    const bgPositionTranslateValue = clientHeight >= pictureWidth
+      ? sliderValue : 0;
     picturesControls.start({
       translateX: `-${(sliderValue / 133 * 100) * ((valueToScroll + (4 * remValue)) / 100)}px`,
       transition: {
@@ -200,7 +193,7 @@ const Projects = ({
     });
     pictureControls.forEach((picControls) => {
       picControls.start({
-        backgroundPosition: `${-(picturesRef.current.clientHeight * 51.6 / 100) - (sliderValue)}px`,
+        backgroundPosition: `${pictureBgPositionValue - (bgPositionTranslateValue)}px`,
         transition: {
           duration: 0.5,
           ease: 'easeOut',
@@ -214,7 +207,7 @@ const Projects = ({
     const marginLeft = width > 768 ? ((width * 20 / 100) + (4 * remValue)) : 2 * remValue;
     const offscreenValue = picturesRef.current.clientWidth - (width - marginLeft);
     setValueToScroll(offscreenValue);
-  }, [width]);
+  }, [width, height]);
 
   return (
     <motion.section className="projectsContainer">
