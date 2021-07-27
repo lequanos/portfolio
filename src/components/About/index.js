@@ -81,10 +81,10 @@ const About = ({
             <br />
             Grâce à ce poste, j’ai été amené à diriger une équipe de près
             de 30 collaborateurs, parfois hétéroclites. Cela m’a permis d’apprendre à gérer tous
-            types de problématiques, aussi bien financières (objectifs à atteindre pour la
-            rentabilité, relationnel fournisseur…), qu’administratives (dossier à constituer pour
-            les demandes d’aménagement, dossiers de litige) ou humaines (gestion de conflits entre
-            collaborateurs ou avec un client…).
+            types de problématiques, aussi bien financières (objectifs à atteindre,
+            relationnel fournisseur…), qu’administratives (dossier à constituer pour
+            les demandes d’aménagement, dossiers de litige...)
+            ou humaines (gestion de conflits entre collaborateurs ou avec un client…).
             <br />
             <br />
             Adepte d’un management bienveillant, être à l’écoute des autres et de leurs difficultés
