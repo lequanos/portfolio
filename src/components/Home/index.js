@@ -19,20 +19,20 @@ const Home = ({
 }) => {
   const homeControls = useAnimation();
   const { width } = useWindowSize();
-  const [techno, setTechno] = useState('React');
+  const [techno, setTechno] = useState('ReactJS');
   const cn = `texte__large text__large--${techno}`;
 
   useEffect(() => {
     const id = setTimeout(() => {
       switch (techno) {
-        case 'React':
+        case 'ReactJS':
           setTechno('NextJS');
           break;
         case 'NextJS':
           setTechno('NodeJS');
           break;
         default:
-          setTechno('React');
+          setTechno('ReactJS');
       }
     }, 3000);
 
@@ -82,7 +82,7 @@ const Home = ({
           <h2 className="text__large">
             Développeur
           </h2>
-          {techno === 'React'
+          {techno === 'ReactJS'
               && (
                 <h2 className={cn}>
                   {techno}
