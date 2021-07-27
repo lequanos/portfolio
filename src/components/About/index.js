@@ -63,8 +63,8 @@ const About = ({
             À propos de moi
           </h2>
           <p className="text__small">
-            Fier papa d’un petit garçon, ma carrière professionnelle n’a été ponctué,
-            jusqu'à présent, seulement par un domaine :
+            Fier papa d’un petit garçon, ma carrière professionnelle n’a été ponctuée,
+            jusqu'à présent, que par un domaine :
             la restauration qui, à l’instar du développement web, est un métier ô combien
             passionnant et chronophage.
             <br />
@@ -103,7 +103,7 @@ const About = ({
             et de Python actuellement.
             <br />
             <br />
-            Au-delà de tout ça, je suis également un passionné de café sous toute ses formes,
+            Au-delà de tout ça, je suis également un passionné de café sous toutes ses formes,
             de boulangerie et toujours aussi de cuisine !
           </p>
         </div>

@@ -68,8 +68,8 @@ export default [
   {
     id: 7,
     url: postgresQLLogo,
-    alt: 'PostgresQL Logo',
-    description: 'PostgresQL',
+    alt: 'PostgreSQL Logo',
+    description: 'PostgreSQL',
   },
   {
     id: 4,
