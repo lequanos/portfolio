@@ -6,13 +6,13 @@ import { SiGithub, SiLinkedin } from 'react-icons/si';
 
 // == Import
 // import InitialTransition from 'src/components/InitialTransition';
-import useWindowSize from '../../lib/useWindowSize';
-import { text, background } from '../../lib/framerVariants';
+import useWindowSize from 'src/lib/useWindowSize';
+import { text, background } from 'src/lib/framerVariants';
 import './styles.scss';
 
 // == Type
 type HomeProps = {
-  controls: AnimationControls;
+  controls: AnimationControls | undefined;
   setControls: (arg: AnimationControls) => void;
   pageIndex: number;
   setPageIndex: (arg: number) => void;
@@ -51,7 +51,7 @@ const Home = ({
 
   useEffect(() => {
     setControls(homeControls);
-    if (Object.keys(controls).length > 0) {
+    if (controls && Object.keys(controls).length > 0) {
       controls.start({
         zIndex: -10,
         transition: {

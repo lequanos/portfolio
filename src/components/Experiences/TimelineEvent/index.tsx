@@ -1,6 +1,5 @@
 // == Import npm
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 // Import Material UI
 import {
@@ -15,6 +14,16 @@ import {
 // == Import
 import '../styles.scss';
 
+// == Type
+type TimelineEventProps = {
+  title: string;
+  subtitle: string;
+  link: string;
+  tasks: string[];
+  date: string;
+  width: number;
+}
+
 // == Composant
 const TimelineEvent = ({
   title,
@@ -23,7 +32,7 @@ const TimelineEvent = ({
   tasks,
   date,
   width,
-}) => (
+}: TimelineEventProps) => (
   <TimelineItem>
     {width > 600
       && (
@@ -91,23 +100,6 @@ const TimelineEvent = ({
     </TimelineContent>
   </TimelineItem>
 );
-
-TimelineEvent.propTypes = {
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
-  link: PropTypes.string,
-  tasks: PropTypes.array,
-  date: PropTypes.string,
-  width: PropTypes.number.isRequired,
-};
-
-TimelineEvent.defaultProps = {
-  title: '',
-  subtitle: '',
-  link: '',
-  tasks: [],
-  date: '',
-};
 
 // == Export
 export default TimelineEvent;

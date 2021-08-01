@@ -1,19 +1,26 @@
 // == Import npm
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation, AnimationControls } from 'framer-motion';
 
 // == Import
 import categoriesData from 'src/data/categoriesData';
 import './styles.scss';
+
+// == Type
+type BurgerMenuProps = {
+  setPageIndex: (arg: number) => void;
+  pageIndex: number;
+  controls: AnimationControls | undefined;
+}
 
 // == Composant
 const BurgerMenu = ({
   setPageIndex,
   pageIndex,
   controls,
-}) => {
+}: BurgerMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const crossControls = useAnimation();
   const straightControls = useAnimation();
@@ -35,19 +42,21 @@ const BurgerMenu = ({
         ease: 'easeInOut',
       },
     });
-    await controls.start({
-      opacity: 0,
-    });
-    controls.start({
-      zIndex: 3,
-    });
-    await controls.start({
-      opacity: 1,
-      transition: {
-        duration: 0.3,
-        ease: 'easeInOut',
-      },
-    });
+    if (controls) {
+      await controls.start({
+        opacity: 0,
+      });
+      controls.start({
+        zIndex: 3,
+      });
+      await controls.start({
+        opacity: 1,
+        transition: {
+          duration: 0.3,
+          ease: 'easeInOut',
+        },
+      });
+    }
     await menuControls.start({
       opacity: 1,
       zIndex: 4,
@@ -85,19 +94,21 @@ const BurgerMenu = ({
     menuControls.start({
       zIndex: -13,
     });
-    await controls.start({
-      opacity: 0,
-      transition: {
-        duration: 0.3,
-        ease: 'easeInOut',
-      },
-    });
-    controls.start({
-      zIndex: -11,
-    });
-    controls.start({
-      opacity: 1,
-    });
+    if (controls) {
+      await controls.start({
+        opacity: 0,
+        transition: {
+          duration: 0.3,
+          ease: 'easeInOut',
+        },
+      });
+      controls.start({
+        zIndex: -11,
+      });
+      controls.start({
+        opacity: 1,
+      });
+    }
     setIsOpen(false);
   };
 
@@ -110,29 +121,27 @@ const BurgerMenu = ({
     }
   };
 
-  const handleClick = (e, nextPageIndex) => {
-    if (nextPageIndex > pageIndex) {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, nextPageIndex: number) => {
+    if (nextPageIndex > pageIndex && controls) {
       controls.start({
         x: -2000,
         y: -2000,
         transition: {
           type: 'spring',
           duration: 1,
-          ease: 'easeIn',
         },
       });
     }
     else if (nextPageIndex === pageIndex) {
       e.preventDefault();
     }
-    else {
+    else if (controls) {
       controls.start({
         x: 2000,
         y: 2000,
         transition: {
           type: 'spring',
           duration: 1,
-          ease: 'easeIn',
         },
       });
     }
@@ -198,20 +207,6 @@ const BurgerMenu = ({
       </motion.nav>
     </>
   );
-};
-
-BurgerMenu.propTypes = {
-  setPageIndex: PropTypes.func,
-  controls: PropTypes.shape({
-    start: PropTypes.func,
-  }),
-  pageIndex: PropTypes.number,
-};
-
-BurgerMenu.defaultProps = {
-  setPageIndex: () => {},
-  controls: {},
-  pageIndex: 0,
 };
 
 // == Export

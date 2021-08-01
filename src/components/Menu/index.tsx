@@ -5,14 +5,14 @@ import { NavLink } from 'react-router-dom';
 import { motion, useAnimation, AnimationControls } from 'framer-motion';
 
 // == Import
-import categoriesData from '../../data/categoriesData';
+import categoriesData from 'src/data/categoriesData';
 import './styles.scss';
 
 // == Type
 type MenuProps = {
   setPageIndex: React.Dispatch<number>;
   pageIndex: number;
-  controls: AnimationControls;
+  controls: AnimationControls | undefined;
 }
 
 // == Composant
@@ -52,28 +52,26 @@ const Menu = ({
   }, [pageIndex]);
 
   const handleClick = async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, nextPageIndex: number) => {
-    if (nextPageIndex > pageIndex) {
+    if (nextPageIndex > pageIndex && controls) {
       controls.start({
         x: -2000,
         y: -2000,
-        type: 'spring',
         transition: {
+          type: 'spring',
           duration: 1,
-          ease: 'easeIn',
         },
       });
     }
     else if (nextPageIndex === pageIndex) {
       e.preventDefault();
     }
-    else {
+    else if (controls) {
       controls.start({
         x: 2000,
         y: 2000,
-        type: 'spring',
         transition: {
+          type: 'spring',
           duration: 1,
-          ease: 'easeIn',
         },
       });
     }

@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 // == Import : local
 // Composants
-import Portfolio from './components/Portfolio';
+import Portfolio from 'src/components/Portfolio';
 
 // == Render
 // 1. Element Reatc racine (celui qui contient l'ensemble de l'app)

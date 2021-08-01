@@ -1,13 +1,38 @@
 // == Import npm
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { motion, useAnimation } from 'framer-motion';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+import { motion, useAnimation, AnimationControls } from 'framer-motion';
 
 // == Import
 import xMark from 'src/assets/projects/x-mark.svg';
 import plus from 'src/assets/projects/plus.svg';
 import usePrevious from 'src/lib/usePrevious';
 import '../styles.scss';
+
+// == Type
+type Project = {
+  url: any;
+  title: string;
+  subtitle: string;
+  context: string;
+  link: string;
+  tasks: string[];
+}
+
+type ProjectProps = {
+  url: string;
+  title: string;
+  subtitle: string;
+  context: string;
+  link: string;
+  tasks: string[];
+  index: number;
+  projectsData: Project[];
+  pictureControls: AnimationControls[];
+  titlesControls: AnimationControls[];
+  projectIndex: number | undefined;
+  setProjectIndex: (arg: number | undefined) => void;
+}
 
 // == Composant
 const Project = ({
@@ -23,22 +48,23 @@ const Project = ({
   titlesControls,
   projectIndex,
   setProjectIndex,
-}) => {
+}: ProjectProps) => {
   const overprintsControls = projectsData.map(() => useAnimation());
-  const prevProjectIndex = usePrevious(projectIndex);
+  const [prevProjectIndex, setPrevProjectIndex] = useState<number | undefined>(usePrevious(projectIndex))
 
-  const handleButtonClick = (ind) => {
-    if (projectIndex === null) {
+  const handleButtonClick = (ind: number) => {
+    if (!projectIndex) {
       setProjectIndex(ind);
     }
   };
 
   const handleCloseButtonClick = () => {
-    setProjectIndex(null);
+    setProjectIndex(undefined);
   };
 
   useEffect(() => {
-    if (projectIndex !== null) {
+    if (typeof projectIndex === 'number') {
+      setPrevProjectIndex(projectIndex);
       overprintsControls[projectIndex]?.start({
         y: 0,
         transition: {
@@ -57,14 +83,16 @@ const Project = ({
         });
       });
     }
-    else if (projectIndex === null) {
-      overprintsControls[prevProjectIndex]?.start({
-        y: 1200,
-        transition: {
-          duration: 0.7,
-          ease: 'easeIn',
-        },
-      });
+    else if (typeof projectIndex === 'undefined') {
+      if (typeof prevProjectIndex === 'number') {
+        overprintsControls[prevProjectIndex]?.start({
+          y: 1200,
+          transition: {
+            duration: 0.7,
+            ease: 'easeIn',
+          },
+        });
+      }
       const otherTitlesControls = titlesControls.filter(
         (control, indx) => indx !== prevProjectIndex,
       );
@@ -139,38 +167,6 @@ const Project = ({
       </motion.div>
     </motion.div>
   );
-};
-
-Project.propTypes = {
-  url: PropTypes.string,
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
-  context: PropTypes.string,
-  link: PropTypes.string,
-  tasks: PropTypes.array,
-  index: PropTypes.number,
-  projectsData: PropTypes.arrayOf(
-    PropTypes.object,
-  ),
-  pictureControls: PropTypes.array,
-  titlesControls: PropTypes.array,
-  projectIndex: PropTypes.number,
-  setProjectIndex: PropTypes.func,
-};
-
-Project.defaultProps = {
-  url: '',
-  title: '',
-  subtitle: '',
-  context: '',
-  link: '',
-  tasks: [],
-  index: 0,
-  projectsData: [],
-  pictureControls: [],
-  titlesControls: [],
-  projectIndex: null,
-  setProjectIndex: () => {},
 };
 
 // == Export

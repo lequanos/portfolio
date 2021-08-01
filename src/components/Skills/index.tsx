@@ -1,7 +1,7 @@
 // == Import npm
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { motion, useAnimation } from 'framer-motion';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+import { motion, useAnimation, AnimationControls } from 'framer-motion';
 
 // == Import
 import {
@@ -15,13 +15,21 @@ import skillsData from 'src/data/skillsData';
 import SkillCard from './SkillCard';
 import './styles.scss';
 
+// == Type
+type SkillsProps = {
+  controls: AnimationControls | undefined;
+  setControls: (arg: AnimationControls) => void;
+  pageIndex: number;
+  setPageIndex: (arg: number) => void;
+}
+
 // == Composant
 const Skills = ({
   controls,
   setControls,
   pageIndex,
   setPageIndex,
-}) => {
+}: SkillsProps) => {
   const [curtain, setCurtain] = useState(false);
   const skillsControls = useAnimation();
   const curtainControls = useAnimation();
@@ -31,7 +39,7 @@ const Skills = ({
 
   useEffect(() => {
     setControls(skillsControls);
-    if (Object.keys(controls).length > 0) {
+    if (controls && Object.keys(controls).length > 0) {
       controls.start({
         zIndex: -10,
         transition: {
@@ -91,20 +99,6 @@ const Skills = ({
       </motion.div>
     </motion.section>
   );
-};
-
-Skills.propTypes = {
-  controls: PropTypes.object,
-  setControls: PropTypes.func,
-  pageIndex: PropTypes.number,
-  setPageIndex: PropTypes.func,
-};
-
-Skills.defaultProps = {
-  controls: {},
-  setControls: () => {},
-  pageIndex: 3,
-  setPageIndex: () => {},
 };
 
 // == Export

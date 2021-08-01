@@ -1,10 +1,11 @@
 import { useRef, useEffect } from 'react';
 
-const usePrevious = (value: number) => {
-  const ref = useRef<number>();
+const usePrevious = (value: number | undefined) => {
+  const ref = useRef<number | undefined>();
   useEffect(() => {
-    if (!ref.current) throw new Error('ref non désigné');
-    ref.current = value;
+    if (ref.current) {
+      ref.current = value;
+    };
   });
   return ref.current;
 };

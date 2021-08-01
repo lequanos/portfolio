@@ -5,10 +5,10 @@ import { Switch, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, AnimationControls } from 'framer-motion';
 
 // == Import
-import Menu from '../Menu';
-import BurgerMenu from '../BurgerMenu';
-import useWindowSize from '../../lib/useWindowSize';
-import categoriesData from '../../data/categoriesData';
+import Menu from 'src/components/Menu';
+import BurgerMenu from 'src/components/BurgerMenu';
+import useWindowSize from 'src/lib/useWindowSize';
+import categoriesData from 'src/data/categoriesData';
 import './styles.scss';
 
 // == Composant
@@ -17,7 +17,7 @@ const Portfolio = () => {
   const [cn, setCn] = useState('home');
   const [pageIndex, setPageIndex] = useState(0);
   const [controls, setControls] = useState<AnimationControls>();
-  const homeRef = useRef<HTMLDivElement>();
+  const homeRef = useRef<HTMLDivElement>(null);
   const { width } = useWindowSize();
 
   const cnMap = [

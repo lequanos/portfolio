@@ -1,10 +1,20 @@
 // == Import npm
-import React from 'react';
-import PropTypes from 'prop-types';
-import { motion } from 'framer-motion';
+import * as React from 'react';
+import { motion, AnimationControls } from 'framer-motion';
+import { SiGithub } from 'react-icons/si';
 
 // == Import
 import '../styles.scss';
+
+// == Type
+type SocialCardProps = {
+  url: string;
+  name: string;
+  Component: typeof  SiGithub;
+  index: number;
+  socialControls: AnimationControls[];
+  socialTextControls: AnimationControls[];
+}
 
 // == Composant
 const SocialCard = ({
@@ -14,8 +24,8 @@ const SocialCard = ({
   index,
   socialControls,
   socialTextControls,
-}) => {
-  const handleMouseEnter = (idx) => {
+}: SocialCardProps) => {
+  const handleMouseEnter = (idx: number) => {
     socialControls[idx].start({
       color: '#3E3F3F',
       transition: {
@@ -43,7 +53,7 @@ const SocialCard = ({
     });
   };
 
-  const handleMouseLeave = (ind) => {
+  const handleMouseLeave = (ind: number) => {
     socialControls[ind].start({
       color: '#e4e0d9',
       transition: {
@@ -93,24 +103,6 @@ const SocialCard = ({
       </div>
     </motion.div>
   );
-};
-
-SocialCard.propTypes = {
-  url: PropTypes.string,
-  name: PropTypes.string,
-  Component: PropTypes.func,
-  index: PropTypes.number,
-  socialControls: PropTypes.array,
-  socialTextControls: PropTypes.array,
-};
-
-SocialCard.defaultProps = {
-  url: '',
-  name: '',
-  Component: () => {},
-  index: 0,
-  socialControls: [],
-  socialTextControls: [],
 };
 
 // == Export

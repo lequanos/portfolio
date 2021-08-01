@@ -1,7 +1,20 @@
 // == Import npm
-import React from 'react';
-import PropTypes from 'prop-types';
-import { motion } from 'framer-motion';
+import * as React from 'react';
+import { motion, AnimationControls, Variants } from 'framer-motion';
+
+// == Type
+type SocialCardProps = {
+  url: string;
+  alt: string;
+  description: string;
+  index: number;
+  skillCard: Variants;
+  curtainControls: AnimationControls;
+  skillControls: AnimationControls[];
+  descriptionControls: AnimationControls[];
+  curtain: boolean;
+  setCurtain: (arg: boolean) => void;
+}
 
 // == Import
 import '../styles.scss';
@@ -18,7 +31,7 @@ const SocialCard = ({
   descriptionControls,
   curtain,
   setCurtain,
-}) => {
+}: SocialCardProps) => {
   const {
     showCurtain,
     bringToFrontSkill,
@@ -29,20 +42,20 @@ const SocialCard = ({
     hideDescription,
   } = skillCard;
 
-  const handleMouseEnter = (ind) => {
+  const handleMouseEnter = (ind: number) => {
     curtainControls.start(showCurtain);
     skillControls[ind].start(bringToFrontSkill);
     descriptionControls[ind].start(showDescription);
   };
 
-  const handleMouseLeave = (idx) => {
+  const handleMouseLeave = (idx: number) => {
     curtainControls.start(hideCurtain);
     curtainControls.start(bringToBackCurtain);
     skillControls[idx].start(bringToBackSkill);
     descriptionControls[idx].start(hideDescription);
   };
 
-  const handleClick = (indx) => {
+  const handleClick = (indx: number) => {
     if (curtain) {
       curtainControls.start(hideCurtain);
       curtainControls.start(bringToBackCurtain);
@@ -82,32 +95,6 @@ const SocialCard = ({
       </div>
     </motion.div>
   );
-};
-
-SocialCard.propTypes = {
-  url: PropTypes.string,
-  alt: PropTypes.string,
-  description: PropTypes.string,
-  index: PropTypes.number,
-  skillCard: PropTypes.object,
-  curtainControls: PropTypes.object,
-  skillControls: PropTypes.array,
-  descriptionControls: PropTypes.array,
-  curtain: PropTypes.bool,
-  setCurtain: PropTypes.func,
-};
-
-SocialCard.defaultProps = {
-  url: '',
-  alt: '',
-  description: '',
-  index: 0,
-  skillCard: {},
-  curtainControls: [],
-  skillControls: [],
-  descriptionControls: [],
-  curtain: false,
-  setCurtain: () => {},
 };
 
 // == Export

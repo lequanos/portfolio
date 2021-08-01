@@ -5,18 +5,18 @@ import { motion, useAnimation, AnimationControls } from 'framer-motion';
 
 // Import Material UI
 import { Timeline } from '@material-ui/lab';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme, ThemeOptions } from '@material-ui/core/styles';
 
 // == Import
-import { text, background } from '../../lib/framerVariants';
-import timelineData from '../../data/timelineData';
-import useWindowSize from '../../lib/useWindowSize';
+import { text, background } from 'src/lib/framerVariants';
+import timelineData from 'src/data/timelineData';
+import useWindowSize from 'src/lib/useWindowSize';
 import TimelineEvent from './TimelineEvent';
 import './styles.scss';
 
 // == Type
 type ExperiencesProps = {
-  controls: AnimationControls;
+  controls: AnimationControls | undefined;
   setControls: (arg: AnimationControls) => void;
   pageIndex: number;
   setPageIndex: (arg: number) => void;
@@ -71,11 +71,11 @@ const Experiences = ({
         },
       },
     },
-  });
+  } as ThemeOptions);
 
   useEffect(() => {
     setControls(experiencesControls);
-    if (Object.keys(controls).length > 0) {
+    if (controls && Object.keys(controls).length > 0) {
       controls.start({
         zIndex: -10,
         transition: {

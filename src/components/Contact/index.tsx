@@ -1,7 +1,7 @@
 // == Import npm
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { motion, useAnimation } from 'framer-motion';
+import * as React from 'react';
+import { useEffect } from 'react';
+import { motion, useAnimation, AnimationControls } from 'framer-motion';
 
 // == Import
 import { text, background, contactPicture } from 'src/lib/framerVariants';
@@ -10,13 +10,21 @@ import socialData from 'src/data/socialData';
 import SocialCard from './SocialCard';
 import './styles.scss';
 
+// == Type
+type ContactProps = {
+  controls: AnimationControls | undefined;
+  setControls: (arg: AnimationControls) => void;
+  pageIndex: number;
+  setPageIndex: (arg: number) => void;
+}
+
 // == Composant
 const Contact = ({
   controls,
   setControls,
   pageIndex,
   setPageIndex,
-}) => {
+}: ContactProps) => {
   const contactControls = useAnimation();
   const { width } = useWindowSize();
   const socialControls = socialData.map(() => useAnimation());
@@ -24,7 +32,7 @@ const Contact = ({
 
   useEffect(() => {
     setControls(contactControls);
-    if (Object.keys(controls).length > 0) {
+    if (controls && Object.keys(controls).length > 0) {
       controls.start({
         zIndex: -10,
         transition: {
@@ -81,20 +89,6 @@ const Contact = ({
       </motion.div>
     </motion.section>
   );
-};
-
-Contact.propTypes = {
-  controls: PropTypes.object,
-  setControls: PropTypes.func,
-  pageIndex: PropTypes.number,
-  setPageIndex: PropTypes.func,
-};
-
-Contact.defaultProps = {
-  controls: {},
-  setControls: () => {},
-  pageIndex: 5,
-  setPageIndex: () => {},
 };
 
 // == Export

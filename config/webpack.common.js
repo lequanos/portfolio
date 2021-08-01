@@ -43,7 +43,7 @@ module.exports = {
     rules: [
       //JS
       {
-        test: [/\.js$/, /\.tsx?$/],
+        test: /\.js$/,
         exclude: /node_modules/,
         use: [
           {

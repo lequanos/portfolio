@@ -1,12 +1,20 @@
 // == Import npm
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { motion, useAnimation } from 'framer-motion';
+import * as React from 'react';
+import { useEffect } from 'react';
+import { motion, useAnimation, AnimationControls } from 'framer-motion';
 
 // == Import
 import { text, picture, background } from 'src/lib/framerVariants';
 import useWindowSize from 'src/lib/useWindowSize';
 import './styles.scss';
+
+// == Type
+type AboutProps = {
+  controls: AnimationControls | undefined;
+  setControls: (arg: AnimationControls) => void;
+  pageIndex: number;
+  setPageIndex: (arg: number) => void;
+}
 
 // == Composant
 const About = ({
@@ -14,13 +22,13 @@ const About = ({
   setControls,
   pageIndex,
   setPageIndex,
-}) => {
+}: AboutProps) => {
   const aboutControls = useAnimation();
   const { width } = useWindowSize();
 
   useEffect(() => {
     setControls(aboutControls);
-    if (Object.keys(controls).length > 0) {
+    if (controls && Object.keys(controls).length > 0) {
       controls.start({
         zIndex: -10,
         transition: {
@@ -110,20 +118,6 @@ const About = ({
       </motion.div>
     </motion.section>
   );
-};
-
-About.propTypes = {
-  controls: PropTypes.object,
-  setControls: PropTypes.func,
-  pageIndex: PropTypes.number,
-  setPageIndex: PropTypes.func,
-};
-
-About.defaultProps = {
-  controls: {},
-  setControls: () => {},
-  pageIndex: 1,
-  setPageIndex: () => {},
 };
 
 // == Export

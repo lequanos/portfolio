@@ -1,7 +1,7 @@
 // == Import npm
-import React, { useEffect, useState, useRef } from 'react';
-import PropTypes from 'prop-types';
-import { motion, useAnimation } from 'framer-motion';
+import * as React from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { motion, useAnimation, AnimationControls } from 'framer-motion';
 
 // Import Material UI
 import { Slider } from '@material-ui/core';
@@ -14,13 +14,21 @@ import projectsData from 'src/data/projectsData';
 import Project from './Project';
 import './styles.scss';
 
+// == Type
+type ProjectsProps = {
+  controls: AnimationControls | undefined;
+  setControls: (arg: AnimationControls) => void;
+  pageIndex: number;
+  setPageIndex: (arg: number) => void;
+}
+
 // == Composant
 const Projects = ({
   controls,
   setControls,
   pageIndex,
   setPageIndex,
-}) => {
+}: ProjectsProps) => {
   const projectsControls = useAnimation();
   const pictureControls = projectsData.map(() => useAnimation());
   const picturesControls = useAnimation();
@@ -28,12 +36,12 @@ const Projects = ({
   const { width, height } = useWindowSize();
   const [sliderValue, setSliderValue] = useState(0);
   const [grabbing, setGrabbing] = useState(false);
-  const [projectIndex, setProjectIndex] = useState(null);
-  const [xValue, setXValue] = useState();
-  const [startXValue, setStartXValue] = useState();
-  const [startYValue, setStartYValue] = useState();
+  const [projectIndex, setProjectIndex] = useState<number | undefined>();
+  const [xValue, setXValue] = useState<number | undefined>();
+  const [startXValue, setStartXValue] = useState<number | undefined>();
+  const [startYValue, setStartYValue] = useState<number | undefined>();
   const [valueToScroll, setValueToScroll] = useState(0);
-  const picturesRef = useRef();
+  const picturesRef = useRef<HTMLDivElement>(null);
 
   const theme = createTheme({
     overrides: {
@@ -58,7 +66,7 @@ const Projects = ({
     },
   });
 
-  const handleWheel = (e) => {
+  const handleWheel = (e: WheelEvent) => {
     if (e.deltaY > 0 || e.deltaX > 0) {
       setSliderValue((prevValue) => (prevValue + 4 < projectsData.length * 33
         ? prevValue + 4 : projectsData.length * 33));
@@ -68,7 +76,7 @@ const Projects = ({
     }
   };
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e: KeyboardEvent) => {
     if (e.code === 'ArrowRight' || e.code === 'ArrowDown') {
       setSliderValue((prevValue) => (prevValue + 4 < projectsData.length * 33
         ? prevValue + 4 : projectsData.length * 33));
@@ -78,7 +86,7 @@ const Projects = ({
     }
   };
 
-  const handleOnMouseDown = (e) => {
+  const handleOnMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
     setGrabbing(true);
     picturesControls.start({
@@ -86,7 +94,7 @@ const Projects = ({
     });
   };
 
-  const handleOnTouchStart = (e) => {
+  const handleOnTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     const xTouchValue = e.touches[0].clientX;
     setXValue(xTouchValue);
     setStartXValue(xTouchValue);
@@ -94,9 +102,10 @@ const Projects = ({
     setStartYValue(yTouchValue);
   };
 
-  const handleOnTouchMove = (e) => {
+  const handleOnTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     const xTouchValue = e.touches[0].clientX;
     const yTouchValue = e.touches[0].clientY;
+    if (!xValue || !startXValue || !startYValue) throw new Error("touchez d'abord!")
     const deltaX = xValue > xTouchValue ? xValue - xTouchValue : xTouchValue - xValue;
     if (xValue > xTouchValue
       && ((startXValue - xTouchValue) ** 2 > (startYValue - yTouchValue) ** 2)) {
@@ -110,7 +119,7 @@ const Projects = ({
     setXValue(xTouchValue);
   };
 
-  const handleOnMouseUp = (e) => {
+  const handleOnMouseUp = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
     setGrabbing(false);
     picturesControls.start({
@@ -118,7 +127,7 @@ const Projects = ({
     });
   };
 
-  const handleOnMouseMove = (e) => {
+  const handleOnMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
     if (grabbing) {
       if (e.movementX < 0) {
@@ -142,7 +151,7 @@ const Projects = ({
 
   useEffect(() => {
     setControls(projectsControls);
-    if (Object.keys(controls).length > 0) {
+    if (controls && Object.keys(controls).length > 0) {
       controls.start({
         zIndex: -10,
         transition: {
@@ -168,6 +177,7 @@ const Projects = ({
 
   useEffect(() => {
     const remValue = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    if (!picturesRef.current) throw new Error("ref non désigné");
     const clientHeight = picturesRef.current.clientHeight > 147
       ? picturesRef.current.clientHeight : 147;
     const pictureWidth = (picturesRef.current.clientWidth / projectsData.length) - (2 * remValue);
@@ -198,6 +208,7 @@ const Projects = ({
   useEffect(() => {
     const remValue = parseFloat(getComputedStyle(document.documentElement).fontSize);
     const marginLeft = width > 768 ? ((width * 20 / 100) + (4 * remValue)) : 2 * remValue;
+    if (!picturesRef.current) throw new Error("ref non désigné");
     const offscreenValue = picturesRef.current.clientWidth - (width - marginLeft);
     setValueToScroll(offscreenValue);
   }, [width, height]);
@@ -253,20 +264,6 @@ const Projects = ({
       </motion.div>
     </motion.section>
   );
-};
-
-Projects.propTypes = {
-  controls: PropTypes.object,
-  setControls: PropTypes.func,
-  pageIndex: PropTypes.number,
-  setPageIndex: PropTypes.func,
-};
-
-Projects.defaultProps = {
-  controls: {},
-  setControls: () => {},
-  pageIndex: 4,
-  setPageIndex: () => {},
 };
 
 // == Export
