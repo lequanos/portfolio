@@ -1,19 +1,26 @@
 // == Import npm
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation, AnimationControls } from 'framer-motion';
 
 // == Import
-import categoriesData from 'src/data/categoriesData';
+import categoriesData from '../../data/categoriesData';
 import './styles.scss';
+
+// == Type
+type MenuProps = {
+  setPageIndex: React.Dispatch<number>;
+  pageIndex: number;
+  controls: AnimationControls;
+}
 
 // == Composant
 const Menu = ({
   setPageIndex,
   pageIndex,
   controls,
-}) => {
+}: MenuProps) => {
   const navControls = useAnimation();
 
   const bgColorMap = [
@@ -25,29 +32,32 @@ const Menu = ({
     '#E99072',
   ];
 
-  useEffect(async () => {
-    await navControls.start({
-      backgroundColor: '#00000000',
-      transition: {
-        duration: 0,
-      },
-    });
-    navControls.start({
-      backgroundColor: bgColorMap[pageIndex],
-      transition: {
-        duration: 0,
-        delay: 1,
-      },
-    });
+  useEffect(() => {
+    const asyncControls = async () => {
+      await navControls.start({
+        backgroundColor: '#00000000',
+        transition: {
+          duration: 0,
+        },
+      });
+      navControls.start({
+        backgroundColor: bgColorMap[pageIndex],
+        transition: {
+          duration: 0,
+          delay: 1,
+        },
+      });
+    };
+    asyncControls();
   }, [pageIndex]);
 
-  const handleClick = async (e, nextPageIndex) => {
+  const handleClick = async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, nextPageIndex: number) => {
     if (nextPageIndex > pageIndex) {
       controls.start({
         x: -2000,
         y: -2000,
+        type: 'spring',
         transition: {
-          type: 'spring',
           duration: 1,
           ease: 'easeIn',
         },
@@ -60,8 +70,8 @@ const Menu = ({
       controls.start({
         x: 2000,
         y: 2000,
+        type: 'spring',
         transition: {
-          type: 'spring',
           duration: 1,
           ease: 'easeIn',
         },
@@ -88,20 +98,6 @@ const Menu = ({
       </ul>
     </motion.nav>
   );
-};
-
-Menu.propTypes = {
-  setPageIndex: PropTypes.func,
-  controls: PropTypes.shape({
-    start: PropTypes.func,
-  }),
-  pageIndex: PropTypes.number,
-};
-
-Menu.defaultProps = {
-  setPageIndex: () => {},
-  controls: {},
-  pageIndex: 0,
 };
 
 // == Export

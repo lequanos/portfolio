@@ -1,18 +1,26 @@
 // == Import npm
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { motion, useAnimation } from 'framer-motion';
+import * as React from 'react';
+import { useEffect } from 'react'
+import { motion, useAnimation, AnimationControls } from 'framer-motion';
 
 // Import Material UI
 import { Timeline } from '@material-ui/lab';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 
 // == Import
-import { text, background } from 'src/lib/framerVariants';
-import timelineData from 'src/data/timelineData';
-import useWindowSize from 'src/lib/useWindowSize';
+import { text, background } from '../../lib/framerVariants';
+import timelineData from '../../data/timelineData';
+import useWindowSize from '../../lib/useWindowSize';
 import TimelineEvent from './TimelineEvent';
 import './styles.scss';
+
+// == Type
+type ExperiencesProps = {
+  controls: AnimationControls;
+  setControls: (arg: AnimationControls) => void;
+  pageIndex: number;
+  setPageIndex: (arg: number) => void;
+}
 
 // == Composant
 const Experiences = ({
@@ -20,7 +28,7 @@ const Experiences = ({
   setControls,
   pageIndex,
   setPageIndex,
-}) => {
+}: ExperiencesProps) => {
   const { width } = useWindowSize();
   const experiencesControls = useAnimation();
   const theme = createTheme({
@@ -117,20 +125,6 @@ const Experiences = ({
       </motion.div>
     </motion.section>
   );
-};
-
-Experiences.propTypes = {
-  controls: PropTypes.object,
-  setControls: PropTypes.func,
-  pageIndex: PropTypes.number,
-  setPageIndex: PropTypes.func,
-};
-
-Experiences.defaultProps = {
-  controls: {},
-  setControls: () => {},
-  pageIndex: 2,
-  setPageIndex: () => {},
 };
 
 // == Export

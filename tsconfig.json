@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "module": "es6",
+    "jsx": "react",
+    "allowJs": true,
+    "target": "es2017",
+    "outDir": "dist",
+    "declaration": true,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "lib": ["es6", "dom"],
+    "noImplicitThis": true,
+    "strictNullChecks": true
+  },
+  "include": ["src"] ,
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
+}

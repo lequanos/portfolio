@@ -7,8 +7,8 @@ module.exports = {
   entry: [
     // SCSS
     paths.src + '/styles/index.scss',
-    // JS
-    paths.src + '/index.js',
+    // TS
+    paths.src + '/index.tsx',
   ],
   output: {
     path: paths.build,
@@ -16,6 +16,7 @@ module.exports = {
     filename: 'js/[name].[contenthash].js',
   },
   resolve: {
+    extensions: ['.tsx', '.ts', '.js', '.jsx'], 
     alias: {
       src: paths.src,
       app: paths.src,
@@ -42,7 +43,7 @@ module.exports = {
     rules: [
       //JS
       {
-        test: /\.js$/,
+        test: [/\.js$/, /\.tsx?$/],
         exclude: /node_modules/,
         use: [
           {
@@ -61,6 +62,13 @@ module.exports = {
         options: {
           outputPath: 'fonts/',
         },
+      },
+
+      //Typescript
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
       },
 
       // Images

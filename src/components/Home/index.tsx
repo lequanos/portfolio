@@ -1,14 +1,22 @@
 // == Import npm
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { motion, useAnimation } from 'framer-motion';
+import * as React from 'react';
+import { useState, useEffect } from 'react';
+import { motion, useAnimation, AnimationControls } from 'framer-motion';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 
 // == Import
 // import InitialTransition from 'src/components/InitialTransition';
-import useWindowSize from 'src/lib/useWindowSize';
-import { text, background } from 'src/lib/framerVariants';
+import useWindowSize from '../../lib/useWindowSize';
+import { text, background } from '../../lib/framerVariants';
 import './styles.scss';
+
+// == Type
+type HomeProps = {
+  controls: AnimationControls;
+  setControls: (arg: AnimationControls) => void;
+  pageIndex: number;
+  setPageIndex: (arg: number) => void;
+}
 
 // == Composant
 const Home = ({
@@ -16,7 +24,7 @@ const Home = ({
   setControls,
   pageIndex,
   setPageIndex,
-}) => {
+}: HomeProps) => {
   const homeControls = useAnimation();
   const { width } = useWindowSize();
   const [techno, setTechno] = useState('ReactJS');
@@ -112,20 +120,6 @@ const Home = ({
       </motion.div>
     </motion.section>
   );
-};
-
-Home.propTypes = {
-  controls: PropTypes.object,
-  setControls: PropTypes.func,
-  pageIndex: PropTypes.number,
-  setPageIndex: PropTypes.func,
-};
-
-Home.defaultProps = {
-  controls: {},
-  setControls: () => {},
-  pageIndex: 0,
-  setPageIndex: () => {},
 };
 
 // == Export
