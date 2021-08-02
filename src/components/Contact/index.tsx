@@ -16,7 +16,7 @@ type ContactProps = {
   setControls: (arg: AnimationControls) => void;
   pageIndex: number;
   setPageIndex: (arg: number) => void;
-}
+};
 
 // == Composant
 const Contact = ({

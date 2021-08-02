@@ -2,6 +2,9 @@
 import * as React from 'react';
 import { motion, AnimationControls, Variants } from 'framer-motion';
 
+// == Import
+import '../styles.scss';
+
 // == Type
 type SocialCardProps = {
   url: string;
@@ -14,10 +17,7 @@ type SocialCardProps = {
   descriptionControls: AnimationControls[];
   curtain: boolean;
   setCurtain: (arg: boolean) => void;
-}
-
-// == Import
-import '../styles.scss';
+};
 
 // == Composant
 const SocialCard = ({
@@ -62,6 +62,7 @@ const SocialCard = ({
       skillControls[indx].start(bringToBackSkill);
       descriptionControls[indx].start(hideDescription);
       setCurtain(false);
+    // eslint-disable-next-line @typescript-eslint/brace-style
     }
     else {
       curtainControls.start(showCurtain);

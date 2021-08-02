@@ -10,14 +10,14 @@ import usePrevious from 'src/lib/usePrevious';
 import '../styles.scss';
 
 // == Type
-type Project = {
+type ProjectType = {
   url: any;
   title: string;
   subtitle: string;
   context: string;
   link: string;
   tasks: string[];
-}
+};
 
 type ProjectProps = {
   url: string;
@@ -27,12 +27,12 @@ type ProjectProps = {
   link: string;
   tasks: string[];
   index: number;
-  projectsData: Project[];
+  projectsData: ProjectType[];
   pictureControls: AnimationControls[];
   titlesControls: AnimationControls[];
   projectIndex: number | undefined;
   setProjectIndex: (arg: number | undefined) => void;
-}
+};
 
 // == Composant
 const Project = ({
@@ -50,7 +50,9 @@ const Project = ({
   setProjectIndex,
 }: ProjectProps) => {
   const overprintsControls = projectsData.map(() => useAnimation());
-  const [prevProjectIndex, setPrevProjectIndex] = useState<number | undefined>(usePrevious(projectIndex))
+  const [prevProjectIndex, setPrevProjectIndex] = useState<number | undefined>(
+    usePrevious(projectIndex),
+  );
 
   const handleButtonClick = (ind: number) => {
     if (!projectIndex) {

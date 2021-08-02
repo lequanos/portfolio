@@ -22,7 +22,7 @@ type TimelineEventProps = {
   tasks: string[];
   date: string;
   width: number;
-}
+};
 
 // == Composant
 const TimelineEvent = ({

@@ -1,6 +1,6 @@
 // == Import npm
 import * as React from 'react';
-import { useEffect } from 'react'
+import { useEffect } from 'react';
 import { motion, useAnimation, AnimationControls } from 'framer-motion';
 
 // Import Material UI
@@ -20,7 +20,7 @@ type ExperiencesProps = {
   setControls: (arg: AnimationControls) => void;
   pageIndex: number;
   setPageIndex: (arg: number) => void;
-}
+};
 
 // == Composant
 const Experiences = ({

@@ -13,7 +13,7 @@ type MenuProps = {
   setPageIndex: React.Dispatch<number>;
   pageIndex: number;
   controls: AnimationControls | undefined;
-}
+};
 
 // == Composant
 const Menu = ({
@@ -51,7 +51,10 @@ const Menu = ({
     asyncControls();
   }, [pageIndex]);
 
-  const handleClick = async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, nextPageIndex: number) => {
+  const handleClick = async (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    nextPageIndex: number,
+  ) => {
     if (nextPageIndex > pageIndex && controls) {
       controls.start({
         x: -2000,

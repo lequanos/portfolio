@@ -13,7 +13,7 @@ type BurgerMenuProps = {
   setPageIndex: (arg: number) => void;
   pageIndex: number;
   controls: AnimationControls | undefined;
-}
+};
 
 // == Composant
 const BurgerMenu = ({
@@ -121,7 +121,10 @@ const BurgerMenu = ({
     }
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, nextPageIndex: number) => {
+  const handleClick = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    nextPageIndex: number,
+  ) => {
     if (nextPageIndex > pageIndex && controls) {
       controls.start({
         x: -2000,

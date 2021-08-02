@@ -14,7 +14,7 @@ type AboutProps = {
   setControls: (arg: AnimationControls) => void;
   pageIndex: number;
   setPageIndex: (arg: number) => void;
-}
+};
 
 // == Composant
 const About = ({

@@ -10,11 +10,11 @@ import '../styles.scss';
 type SocialCardProps = {
   url: string;
   name: string;
-  Component: typeof  SiGithub;
+  Component: typeof SiGithub;
   index: number;
   socialControls: AnimationControls[];
   socialTextControls: AnimationControls[];
-}
+};
 
 // == Composant
 const SocialCard = ({

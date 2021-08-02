@@ -20,7 +20,7 @@ type ProjectsProps = {
   setControls: (arg: AnimationControls) => void;
   pageIndex: number;
   setPageIndex: (arg: number) => void;
-}
+};
 
 // == Composant
 const Projects = ({
@@ -105,7 +105,7 @@ const Projects = ({
   const handleOnTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     const xTouchValue = e.touches[0].clientX;
     const yTouchValue = e.touches[0].clientY;
-    if (!xValue || !startXValue || !startYValue) throw new Error("touchez d'abord!")
+    if (!xValue || !startXValue || !startYValue) throw new Error("touchez d'abord!");
     const deltaX = xValue > xTouchValue ? xValue - xTouchValue : xTouchValue - xValue;
     if (xValue > xTouchValue
       && ((startXValue - xTouchValue) ** 2 > (startYValue - yTouchValue) ** 2)) {
@@ -177,38 +177,39 @@ const Projects = ({
 
   useEffect(() => {
     const remValue = parseFloat(getComputedStyle(document.documentElement).fontSize);
-    if (!picturesRef.current) throw new Error("ref non désigné");
-    const clientHeight = picturesRef.current.clientHeight > 147
-      ? picturesRef.current.clientHeight : 147;
-    const pictureWidth = (picturesRef.current.clientWidth / projectsData.length) - (2 * remValue);
-    const pictureBgPositionValue = clientHeight >= pictureWidth
-      ? -(clientHeight * 51.6 / 100) : Math.floor(
-        ((1904 * clientHeight / 937) - pictureWidth) / -2,
-      );
-    const bgPositionTranslateValue = clientHeight >= pictureWidth
-      ? sliderValue : 0;
-    picturesControls.start({
-      translateX: `-${(sliderValue / 133 * 100) * ((valueToScroll + (4 * remValue)) / 100)}px`,
-      transition: {
-        duration: 0.5,
-        ease: 'easeOut',
-      },
-    });
-    pictureControls.forEach((picControls) => {
-      picControls.start({
-        backgroundPosition: `${pictureBgPositionValue - (bgPositionTranslateValue)}px`,
+    if (picturesRef.current) {
+      const clientHeight = picturesRef.current.clientHeight > 147
+        ? picturesRef.current.clientHeight : 147;
+      const pictureWidth = (picturesRef.current.clientWidth / projectsData.length) - (2 * remValue);
+      const pictureBgPositionValue = clientHeight >= pictureWidth
+        ? -(clientHeight * 51.6 / 100) : Math.floor(
+          ((1904 * clientHeight / 937) - pictureWidth) / -2,
+        );
+      const bgPositionTranslateValue = clientHeight >= pictureWidth
+        ? sliderValue : 0;
+      picturesControls.start({
+        translateX: `-${(sliderValue / 133 * 100) * ((valueToScroll + (4 * remValue)) / 100)}px`,
         transition: {
           duration: 0.5,
           ease: 'easeOut',
         },
       });
-    });
+      pictureControls.forEach((picControls) => {
+        picControls.start({
+          backgroundPosition: `${pictureBgPositionValue - (bgPositionTranslateValue)}px`,
+          transition: {
+            duration: 0.5,
+            ease: 'easeOut',
+          },
+        });
+      });
+    }
   }, [sliderValue]);
 
   useEffect(() => {
     const remValue = parseFloat(getComputedStyle(document.documentElement).fontSize);
     const marginLeft = width > 768 ? ((width * 20 / 100) + (4 * remValue)) : 2 * remValue;
-    if (!picturesRef.current) throw new Error("ref non désigné");
+    if (!picturesRef.current) throw new Error('ref non désigné');
     const offscreenValue = picturesRef.current.clientWidth - (width - marginLeft);
     setValueToScroll(offscreenValue);
   }, [width, height]);
