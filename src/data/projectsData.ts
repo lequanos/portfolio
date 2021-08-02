@@ -53,6 +53,7 @@ export default [
       'Utilisation de la librairie framer-motion',
       'Utilisation de Material UI',
       "Accès à l'application via un reverse-proxy Nginx",
+      'Utilisation de Typescript',
     ],
   },
   {
